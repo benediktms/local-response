@@ -11,32 +11,32 @@ AllCops:
     - 'test/**/*'
 
 Style/ConditionalAssignment:
-  Enabled: false
+  Enabled: true
 Style/StringLiterals:
-  Enabled: false
+  Enabled: true
 Style/RedundantReturn:
-  Enabled: false
+  Enabled: true
 Style/Documentation:
-  Enabled: false
+  Enabled: true
 Style/WordArray:
-  Enabled: false
+  Enabled: true
 Metrics/AbcSize:
-  Enabled: false
+  Enabled: true
 Style/MutableConstant:
-  Enabled: false
+  Enabled: true
 Style/SignalException:
-  Enabled: false
+  Enabled: true
 Metrics/CyclomaticComplexity:
-  Enabled: false
+  Enabled: true
 Style/MissingRespondToMissing:
-  Enabled: false
+  Enabled: true
 Style/MethodMissingSuper:
-  Enabled: false
+  Enabled: true
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
 Layout/LineLength:
   Max: 120
 Style/EmptyMethod:
-  Enabled: false
+  Enabled: true
 Bundler/OrderedGems:
-  Enabled: false
+  Enabled: true
