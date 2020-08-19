@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :jobs
   has_many :bookings
   has_many :user_categories
-  has_many :reviews, through: :bookings
+  has_many :reviews
 end
