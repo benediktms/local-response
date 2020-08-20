@@ -2,10 +2,61 @@
   <div class="row">
     <h1>Confirmed bookings</h1>
   </div>
+
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <% if booking.confirmed == true %>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title"><%= booking.job.title %></div>
+            <div class="card-text"><%= booking.job.description %></div>
+            <%= link_to job_path(booking.job) do %>
+              <button class="btn btn-primary">Details</button>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="row">
     <h1>Pending bookings</h1>
   </div>
+
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <% if booking.confirmed == false %>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title"><%= booking.job.title %></div>
+            <div class="card-text"><%= booking.job.description %></div>
+            <%= link_to job_path(booking.job) do %>
+              <button class="btn btn-primary">Details</button>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="row">
     <h1>Past bookings</h1>
   </div>
+
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <% if booking.completed == false %>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title"><%= booking.job.title %></div>
+            <div class="card-text"><%= booking.job.description %></div>
+            <%= link_to job_path(booking.job) do %>
+              <button class="btn btn-primary">Details</button>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>
