@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    #geocoding stuff goes here
+    @job = Job.all
   end
 
   def new
@@ -32,7 +32,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :address, :due_date, :start_time, :end_time, :longitude, :latitude)
+    params.require(:job).permit(:title, :description, :address, :due_date, :start_time, :end_time, :longitude, :latitude, :price)
     end
 
   def set_job
