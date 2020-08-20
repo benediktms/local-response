@@ -45,7 +45,7 @@
 
   <div class="row">
     <% @bookings.each do |booking| %>
-      <% if booking.completed == false %>
+      <% if booking.completed == true %>
         <div class="card">
           <div class="card-body">
             <div class="card-title"><%= booking.job.title %></div>
