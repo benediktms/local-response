@@ -10,7 +10,7 @@
           <div class="card-body">
             <div class="card-title"><%= booking.job.title %></div>
             <div class="card-text"><%= booking.job.description %></div>
-            <%= link_to job_path(booking.job) do %>
+            <%= link_to job_booking_path(booking.job, booking) do %>
               <button class="btn btn-primary">Details</button>
             <% end %>
           </div>
@@ -30,7 +30,7 @@
           <div class="card-body">
             <div class="card-title"><%= booking.job.title %></div>
             <div class="card-text"><%= booking.job.description %></div>
-            <%= link_to job_path(booking.job) do %>
+            <%= link_to job_booking_path(booking.job, booking) do %>
               <button class="btn btn-primary">Details</button>
             <% end %>
           </div>
@@ -50,7 +50,7 @@
           <div class="card-body">
             <div class="card-title"><%= booking.job.title %></div>
             <div class="card-text"><%= booking.job.description %></div>
-            <%= link_to job_path(booking.job) do %>
+            <%= link_to job_booking_path(booking.job, booking) do %>
               <button class="btn btn-primary">Details</button>
             <% end %>
           </div>
