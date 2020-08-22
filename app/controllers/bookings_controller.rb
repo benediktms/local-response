@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
   def create
     @job = Job.find(params[:id])
     @booking = Booking.new
-    @bookng.user_id = current_user
+    @booking.user_id = current_user
     @booking.job = @job
     if @booking.save
       redirect_to jobs_path
