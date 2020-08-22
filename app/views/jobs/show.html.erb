@@ -1,1 +1,5 @@
 show.html.erb
+<p><%= @job.id %></p>
+<p><%= @job.description %></p>
+<%= link_to "Volunteer for this job", new_booking_path(@job), class: "btn btn-outline-secondary mb-2" %>
+<%= link_to "Back to list of jobs", jobs_path, class: "btn btn-outline-secondary mb-2" %>

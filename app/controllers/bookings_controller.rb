@@ -6,9 +6,20 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
-  def show; end
+  def new
+    @booking = Booking.new
+  end
 
-  def set_booking
+  def create
+    @booking = Booking.new
+    if @booking.save
+      redirect_to jobs_path
+    else
+      render :new
+    end
+  end
+
+  def show
     @booking = Booking.find(params[:id])
   end
 end
