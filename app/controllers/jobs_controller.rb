@@ -12,7 +12,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    params.delete :query if params[:query].present?
+    @job = Job.find(params[:id])
   end
 
   def create
@@ -36,6 +36,6 @@ class JobsController < ApplicationController
     end
 
   def set_job
-    @job = Jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 end
