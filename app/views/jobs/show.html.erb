@@ -1,5 +1,14 @@
-show.html.erb
-<p><%= @job.id %></p>
-<p><%= @job.description %></p>
-<%= link_to "Volunteer for this job", new_booking_path(@job), class: "btn btn-outline-secondary mb-2" %>
+<div class="container">
+
+  <div>
+  <p>Map will go here</p>
+  </div>
+
+  <div class="d-flex" >
+  <p><%= @job.id %></p>
+  <p><%= @job.description %></p>
+  </div>
+
+<%= link_to "Volunteer for this job", job_quick_create_path(@job), method:'post', class: "btn btn-outline-secondary mb-2" %>
 <%= link_to "Back to list of jobs", jobs_path, class: "btn btn-outline-secondary mb-2" %>
+</div>
