@@ -36,6 +36,6 @@ class JobsController < ApplicationController
     end
 
   def set_job
-    @job = Jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 end
