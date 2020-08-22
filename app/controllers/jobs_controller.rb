@@ -11,9 +11,7 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  def show
-    # params.delete :query if params[:query].present?
-  end
+  def show; end
 
   def create
     @job = Job.new
