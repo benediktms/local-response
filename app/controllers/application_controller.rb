@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
-  def configure_devise_permitted_parameters
+  def configure_permitted_parameters
     registration_params = [:first_name, :last_name, :address, :email, :password, :password_confirmation]
 
     if params[:action] == 'update'
