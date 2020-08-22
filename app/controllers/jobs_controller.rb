@@ -4,16 +4,14 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @job = Job.all
+    @jobs = Job.all
   end
 
   def new
     @job = Job.new
   end
 
-  def show
-    @job = Job.find(params[:id])
-  end
+  def show; end
 
   def create
     @job = Job.new
@@ -33,7 +31,7 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :address, :due_date, :start_time, :end_time, :longitude, :latitude, :price)
-    end
+  end
 
   def set_job
     @job = Job.find(params[:id])
