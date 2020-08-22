@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_booking, only: :show
-
+  
   def index
     @bookings = Booking.all
   end
@@ -11,12 +10,15 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @job = Job.find(params[:id])
     @booking = Booking.new
-    @booking.user_id = current_user
-    @booking.job = @job
+    @job = Job.find(params[:job_id])
+    @booking.user_id = current_user.id
+    # @booking.confirmed_datetime = @booking.job.due_date
+    @booking.job_id = @job.id
+    @booking.completed = 'false'
+    @booking.confirmed = 'false'
     if @booking.save
-      redirect_to jobs_path
+      redirect_to bookings_path
     else
       render 'jobs'
     end
@@ -25,4 +27,9 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
   end
+
+  private
+  
+  
+
 end
