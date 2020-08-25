@@ -27,13 +27,13 @@ class BookingsController < ApplicationController
 
   def show; end
 
+  def complete_booking
+    @booking.completed = true
+  end
+
   private
 
   def set_booking
     @booking = Booking.find(params[:id])
-  end
-
-  def complete_booking
-    @booking.completed = true
   end
 end

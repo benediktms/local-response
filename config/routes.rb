@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :jobs do
-    post '/bookings', to: 'bookings#create', as: 'quick_create' 
+    post '/bookings', to: 'bookings#create', as: 'quick_create'
+    patch '/bookings', to: 'bookings#complete_booking', as: 'quick_complete'
     resources :bookings, only: %i[show] do
       resources :reviews, only: %i[show new create update edit destroy]
     end
