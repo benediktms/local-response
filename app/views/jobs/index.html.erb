@@ -10,7 +10,7 @@
       <h2>Job listings</h2>
       <ul>
         <% @jobs.each do |job| %>
-          <li><%= link_to job.title, job_path(job) %></li>
+          <li><%= link_to job.title, job_path(job) %> <%= job.user.first_name %> needs help on <%= job.due_date %> </li>
         <% end %>
       </ul>
     </div>

@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: :show
   before_action :job_params, only: :create
+  before_action :filter_jobs, only: :create
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
@@ -36,4 +37,16 @@ class JobsController < ApplicationController
   def set_job
     @job = Job.find(params[:id])
   end
+
+  def filter_jobs?
+  # will return true if current_user (i) has not booked job and (ii) has not posted job.
+  test_array = []
+  test_array << @job.user_id
+    @job.bookings.each do |booking|
+      test_array << booking.user.id
+    end
+  return true if !test_array.include? current_user.id
+  end
+  helper_method :filter_jobs?
+
 end

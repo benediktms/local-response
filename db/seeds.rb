@@ -51,6 +51,7 @@ job1 = Job.create(
   {
     title: 'Need groceries',
     description: 'food pls',
+    due_date: Time.now + 259_200,
     category_id: 1,
     user_id: 1
   }
@@ -61,6 +62,7 @@ job2 = Job.create(
   {
     title: 'Need medicien',
     description: 'medicine pls',
+    due_date: Time.now + 259_200,
     category_id: 2,
     user_id: 1
   }
