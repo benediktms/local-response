@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  
+  before_action :set_booking, only: %i[show complete_booking]
+
   def index
     @bookings = Booking.all
   end
@@ -29,7 +30,13 @@ class BookingsController < ApplicationController
   end
 
   private
-  
-  
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def complete_booking
+    @booking.completed = true
+  end
 
 end
