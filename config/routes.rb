@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :jobs do
     post '/bookings', to: 'bookings#create', as: 'quick_create'
-    patch '/bookings', to: 'bookings#complete_booking', as: 'quick_complete'
     resources :bookings, only: %i[show] do
       resources :reviews, only: %i[show new create update edit destroy]
     end
   end
-  resources :bookings, except: %i[show create]
+  resources :bookings, except: %i[show create] do
+    patch :complete, on: :member
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
