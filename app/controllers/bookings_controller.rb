@@ -1,8 +1,15 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  
-  def index
-    @bookings = Booking.all
+
+  def index #could be moved to pages view, pages controller as def dashboard
+    # @bookings = Booking.all
+    @jobs = Job.where(user_id: current_user.id)
+    # @bookings = Booking.where(@job.user_id)
+    # if current_user.volunteer?
+    # @bookings = Booking.where(user_id: current_user.id) - bookings im applying for
+    # else
+    # @bookings = Booking - im a shielder, want to see bookings for my job
+
   end
 
   def new
@@ -29,7 +36,7 @@ class BookingsController < ApplicationController
   end
 
   private
-  
-  
+
+
 
 end
