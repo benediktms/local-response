@@ -10,8 +10,12 @@
     <p><%= @booking.completed %></p>
   </div>
 
-  <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
-    <button class="btn btn-primary">Compelte</button>
+  <% if @booking.completed == false %>
+    <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
+      <button class="btn btn-primary">Compelte</button>
+    <% end %>
+  <% else %>
+    <p>You've completed this job!</p>
   <% end %>
 
 <%# <%= link_to "Review your job", new_job_booking_review_path, class: "btn btn-outline-secondary mb-2" %>
