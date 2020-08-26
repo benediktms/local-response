@@ -1,1 +1,13 @@
-new.html.erb
+<div class="container">
+  <h1>Create a Job</h1>
+
+  <%= simple_form_for [ @job ] do |f| %>
+  <%=  f.input :title, input_html: { placeholder: "Give your job a catchy title." } %>
+  <%=  f.input :description, input_html: { placeholder: "Give all th details about your job." } %>
+  <%=  f.input :address, input_html: { placeholder: "Give your job a catchy title." } %>
+  <%=  f.input :due_date, as: :date %>
+  <%=  f.input :start_time, as: :time %>
+  <%=  f.input :end_time, as: :time %>
+  <%= f.submit "Create a job", class: "btn btn-outline-secondary" %>
+  <% end %>
+</div>
