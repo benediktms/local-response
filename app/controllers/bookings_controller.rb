@@ -6,8 +6,9 @@ class BookingsController < ApplicationController
     Booking.all.each do |booking|
       booking_array << booking if booking.job.user_id == current_user.id
       end
-    @bookings = booking_array
+    @received_bookings = booking_array
     @jobs = Job.where(user_id: current_user.id)
+    @requested_bookings = Booking.where(user: current_user.id)
   end
 
   def new
