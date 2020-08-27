@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!
   before_action :set_booking, only: %i[show complete decline]
 
   def index #could be moved to pages view, pages controller as def dashboard
@@ -47,6 +47,7 @@ class BookingsController < ApplicationController
     @bookings.each do |booking|
       booking.declined = true
     end
+    # TODO create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
   end
 
   private
