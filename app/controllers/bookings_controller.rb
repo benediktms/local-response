@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_booking, only: %i[show complete]
+  before_action :set_booking, only: %i[show complete decline]
 
   def index #could be moved to pages view, pages controller as def dashboard
     booking_array = Booking.where(user_id: current_user.id)
@@ -38,6 +38,15 @@ class BookingsController < ApplicationController
     @booking.completed = true
     @booking.save
     redirect_to bookings_path
+  end
+
+  def decline
+    # get all bookings that are not the current booking and that match the current job
+    @bookings = Booking.where(id: !@booking.id).select { |booking| booking.job == @booking.job }
+    # set declined on all those bookings == true
+    @bookings.each do |booking|
+      booking.declined = true
+    end
   end
 
   private
