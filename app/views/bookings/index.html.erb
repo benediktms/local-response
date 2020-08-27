@@ -3,7 +3,7 @@
     <h1>Confirmed bookings</h1>
   </div>
   <div class="row">
-    <% @bookings.each do |booking| %>
+    <% @requested_bookings.each do |booking| %>
       <% if booking.confirmed == true %>
         <div class="card">
           <div class="card-body">
@@ -23,7 +23,7 @@
   </div>
 
   <div class="row">
-    <% @bookings.each do |booking| %>
+    <% @requested_bookings.each do |booking| %>
       <% if booking.confirmed == false %>
         <div class="card">
           <div class="card-body">
@@ -44,7 +44,7 @@
   </div>
 
   <div class="row">
-    <% @bookings.each do |booking| %>
+    <% @requested_bookings.each do |booking| %>
       <% if booking.completed == true %>
         <div class="card">
           <div class="card-body">
