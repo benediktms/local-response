@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: :show
   before_action :job_params, only: :create
-  before_action :filter_jobs, only: :create
+  # before_action :filter_jobs?, only: :create
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
@@ -23,7 +23,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new
-    @job.user_id = current_user
+    @job.user = current_user
     if @job.save
       redirect_to jobs_path
     else
@@ -39,7 +39,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :address, :due_date, :start_time, :end_time, :longitude, :latitude, :price)
+    params.require(:job).permit(:title, :description, :address, :due_date, :category, :start_time, :end_time, :longitude, :latitude, :price)
   end
 
   def set_job
