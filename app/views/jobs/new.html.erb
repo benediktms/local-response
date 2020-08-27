@@ -4,6 +4,7 @@
   <%= simple_form_for [ @job ] do |f| %>
   <%=  f.input :title, input_html: { placeholder: "Give your job a catchy title." } %>
   <%=  f.input :description, input_html: { placeholder: "Give all th details about your job." } %>
+  <%= f.association :category, input_html: { class: "beautiful-dropdown" }, include_hidden: false %>
   <%=  f.input :address, input_html: { placeholder: "Give your job a catchy title." } %>
   <%=  f.input :due_date, as: :date %>
   <%=  f.input :start_time, as: :time %>

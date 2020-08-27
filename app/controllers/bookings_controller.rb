@@ -2,8 +2,14 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_booking, only: %i[show complete]
 
-  def index
-    @bookings = Booking.all
+  def index #could be moved to pages view, pages controller as def dashboard
+    booking_array = Booking.where(user_id: current_user.id)
+    Booking.all.each do |booking|
+      booking_array << booking if booking.job.user_id == current_user.id
+      end
+    @received_bookings = booking_array
+    @jobs = Job.where(user_id: current_user.id)
+    @requested_bookings = Booking.where(user: current_user.id)
   end
 
   def new
