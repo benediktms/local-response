@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, except: %i[show create] do
     patch :complete, on: :member
+    patch :confirm, on: :member
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
