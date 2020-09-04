@@ -1,9 +1,10 @@
 <div class="container">
-  <p> Hello </p>
+<h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
 
-  <div>
-    <p>Map will go here</p>
-  </div>
+<div id="map"
+      class=" rounded shadow"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
   <div class="d-flex">
     <p><%= @booking.confirmed %></p>
