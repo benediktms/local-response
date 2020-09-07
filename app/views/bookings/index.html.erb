@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> <%= booking.user.first_name %> wants to help you </div>
-            <%= link_to job_booking_path(:job_id, booking.id) do %>
+            <%= link_to job_booking_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2">Choose <%= booking.user.first_name %></button>
             <% end %>
           </div>
@@ -36,7 +36,7 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> <%= booking.user.first_name %> is on the way </div>
-            <%= link_to job_booking_path(:job_id, booking.id) do %>
+            <%= link_to job_booking_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2"> Booking details</button>
             <% end %>
           </div>
@@ -58,9 +58,10 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> <%= booking.user.first_name %> has marked the job as complete </div>
-            <%= link_to new_job_booking_review_path(:job_id, :booking_id) do %>
+            <%= link_to new_job_booking_review_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2">Review <%= booking.user.first_name %> </button>
             <% end %>
+            <button class="btn btn-outline-secondary mb-2">Upload a receipt</button>
           </div>
         </div>
       <% end %>
@@ -110,7 +111,7 @@
             <%= link_to job_path(booking.job.id) do %>
             <button class="btn btn-outline-secondary mb-2"> Job details</button>
             <% end %>
-           <%= link_to job_booking_path(:job_id, booking.id) do %>
+           <%= link_to job_booking_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2"> Booking details</button>
             <% end %>
           </div>
@@ -133,9 +134,10 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> Thank you for helping <%= booking.job.user.first_name %>  !! </div>
-            <%= link_to  new_job_booking_review_path(:job_id, :booking_id) do %>
+            <%= link_to  new_job_booking_review_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2">Review <%= booking.job.user.first_name %></button>
             <% end %>
+            <button class="btn btn-outline-secondary mb-2">Upload a receipt</button>
           </div>
         </div>
       <% end %>

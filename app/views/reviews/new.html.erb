@@ -1,7 +1,8 @@
 <div class="container">
 
-  <%= simple_form_for [ @booking, @review ] do |f| %>
+  <%= simple_form_for @review, url: job_booking_reviews_path  do |f|  %>
   <%= f.input :description %>
+  <%= f.input :rating, collection: (1..5).to_a %>
   <%= f.submit "Submit review", class: "btn btn-outline-secondary" %>
   <% end %>
 
