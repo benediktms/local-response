@@ -5,8 +5,11 @@ class BookingsController < ApplicationController
   def index #could be moved to pages view, pages controller as def dashboard
     booking_array = Booking.where(user_id: current_user.id)
     Booking.all.each do |booking|
-      booking_array << booking if booking.job.user_id == current_user.id
+      # booking_array << booking if booking.job.user_id == current_user.id
+      if booking.job.user_id == current_user.id
+        booking_array.push(booking)
       end
+    end
     @received_bookings = booking_array
     @jobs = Job.where(user_id: current_user.id)
     @requested_bookings = Booking.where(user: current_user.id)
