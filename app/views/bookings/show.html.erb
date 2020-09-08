@@ -1,27 +1,53 @@
 <div class="container">
+
 <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
+
 
 <div id="map"
       class=" rounded shadow"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-  <div class="d-flex">
-    <p><%= @booking.confirmed %></p>
-    <p><%= @booking.completed %></p>
+   <div class="row">
+    Booking details:
+    <br>
+    Booking id : <%= @booking.id %>
+    <br>
+    Volunteer : <%= @booking.user.first_name%>
+    <br>
+    Booking status : 
+    <% if !@booking.confirmed %> This booking has not been confirmed
+    <% elsif !@booking.completed %> This booking has not been completed
+    <% end %>
   </div>
 
+<% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
 
-  <% if @booking.completed == false %>
-    <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
-      <button class="btn btn-primary">Compelte</button>
-    <% end %>
-  <% else %>
-    <p>You've completed this job!</p>
+  <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>
+   
+  <div class="row">
+    <%= link_to confirm_booking_path(@booking), method: 'PATCH' do %>
+      <button class="btn btn-outline-secondary mb-2"> Confirm this booking </button>
+      <% end %>
+  </div>
+  
   <% end %>
+ 
+<% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
-<%# <%= link_to "Review your job", new_job_booking_review_path, class: "btn btn-outline-secondary mb-2" %>
+  <% if current_user.id == @booking.user_id && !@booking.completed %>
+  
+  <div class="row">
+    <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
+      <button class="btn btn-outline-secondary mb-2"> I have completed this job </button>
+      <% end %>  
+  </div>
+
+ <% end %>
+
 <%= link_to "Back to bookings", bookings_path(@bookings), method:'get', class: "btn btn-outline-secondary mb-2" %>
+<%# <%= link_to "Review your job", new_job_booking_review_path, class: "btn btn-outline-secondary mb-2" %>
+
 </div>
 
 

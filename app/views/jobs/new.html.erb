@@ -3,12 +3,12 @@
 
   <%= simple_form_for [ @job ] do |f| %>
   <%=  f.input :title, input_html: { placeholder: "Give your job a catchy title." } %>
-  <%=  f.input :description, input_html: { placeholder: "Give all th details about your job." } %>
+  <%=  f.input :description, input_html: { placeholder: "Give all the details about your job." } %>
   <%= f.association :category, input_html: { class: "beautiful-dropdown" }, include_hidden: false %>
-  <%=  f.input :address, input_html: { placeholder: "Give your job a catchy title." } %>
-  <%=  f.input :due_date, as: :date %>
-  <%=  f.input :start_time, as: :time %>
-  <%=  f.input :end_time, as: :time %>
+  <%=  f.input :address, input_html: { placeholder: "Give your address." } %>
+  <%=  f.input :due_date, as: :date, html5: true %>
+  <%=  f.input :start_time, as: :integer, html5: true %>
+  <%=  f.input :end_time, as: :integer, html5: true  %>
   <%= f.submit "Create a job", class: "btn btn-outline-secondary" %>
   <% end %>
 </div>

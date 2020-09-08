@@ -22,8 +22,8 @@ class JobsController < ApplicationController
   def show; end
 
   def create
-    @job = Job.new
-    @job.user = current_user
+    @job = Job.new(job_params)
+    @job.user_id = current_user.id
     if @job.save
       redirect_to jobs_path
     else
@@ -39,7 +39,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :address, :due_date, :category, :start_time, :end_time, :longitude, :latitude, :price)
+    params.require(:job).permit(:title, :description, :address, :due_date, :category_id, :start_time, :end_time, :longitude, :latitude, :price)
   end
 
   def set_job

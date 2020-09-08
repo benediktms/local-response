@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :find_booking
 
   def new
-    @review = Review.new
+    @review = Review.new(review_params)
   end
   
   def create
@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-   @review = Review.find(params[:id])
+   @review = Review.find(params[:booking_id])
    @review.destroy
    redirect_to booking_path(@booking)
   end
@@ -29,7 +29,7 @@ private
   end
 
   def review_params
-    params.require(:review).permit(:description, :rating, :user_id, :title)
+    params.require(:review).permit(:description, :rating, :user_id, :title, :booking_id, :job_id)
   end
 
 end
