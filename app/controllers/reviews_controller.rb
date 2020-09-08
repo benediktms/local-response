@@ -31,6 +31,7 @@ private
   end
 
   def review_params
+#     Let's review if we need to add more parameters below (such as:job_id and booking_id)
     params.require(:review).permit(:description, :rating)
   end
 
