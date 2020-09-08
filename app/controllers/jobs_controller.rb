@@ -60,7 +60,7 @@ class JobsController < ApplicationController
 
   def render_jobs
     if current_user
-      @jobs = Job.where("user_id != '#{current_user.id}'")
+      @jobs = Job.geocoded.where("user_id != '#{current_user.id}'")
     else
       @jobs = Job.geocoded
     end
