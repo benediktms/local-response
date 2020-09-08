@@ -11,9 +11,13 @@ class BookingsController < ApplicationController
     # @received_bookings are the bookings received by current_user (as person seeking help)
     booking_array = []
     Booking.all.each do |booking|
-      booking_array << booking if booking.job.user_id == current_user.id
+      # booking_array << booking if booking.job.user_id == current_user.id
+      if booking.job.user_id == current_user.id
+        booking_array.push(booking)
       end
+
         @received_bookings = booking_array
+
     @jobs = Job.where(user_id: current_user.id)
     # @requested_bookings are the bookings made by current_user (as volunteer)
     @requested_bookings = Booking.where(user_id: current_user.id)

@@ -1,4 +1,71 @@
+<div class="jumbotron" style="background-image: url(/assets/images/living-room-scene.png)">
+  <div class="row">
+  <div class="col-md-3">
+    <%= image_tag 'logo_transparent.png', class: "w-100" %>
+  </div>
+  <div class="col-md-9 flex-column">
+    <h1 class="display-4">Welcome to Local Response</h1>
+    <p class="lead">The app that helps bring communities together by empowering them toe help one another in times of crisis.</p>
+    <hr class="my-4">
+    <p>If you are in need of assistance and are looking for help, click <%= link_to "here", new_job_path %></p>
+    <%= link_to "Help now", jobs_path, class: "btn btn-primary btn-lg shadow" %>
+  </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2 class="text-center mt-5">Help people in a way that matters.</h1>
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <p>Bring your local community together by doing good. Drive change and connect people. Some more blurb here</p>
+    </div>
+    <div class="col-md-6">
+      <%= image_tag "share.png", class: "w-100" %>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-5">Get essentials into the hands of those who need it most</h1>
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <%= image_tag "shopping.png", class: "w-100" %>
+    </div>
+    <div class="col-md-6">
+      <p>Bring your local community together by doing good. Drive change and connect people. Some more blurb here</p>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-5">Help people in a way that matters.</h1>
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <p>Bring your local community together by doing good. Drive change and connect people. Some more blurb here</p>
+    </div>
+    <div class="col-md-6">
+      <%= image_tag "reminder_note.png", class: "w-100" %>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-5">Get essentials into the hands of those who need it most</h1>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <%= image_tag "shopping.png", class: "w-100" %>
+      </div>
+      <div class="col-md-6">
+        <p>Bring your local community together by doing good. Drive change and connect people. Some more blurb here</p>
+      </div>
+    </div>
+
+  <h2 class="text-center mt-5">Help people in a way that matters.</h1>
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <p>Bring your local community together by doing good. Drive change and connect people. Some more blurb here</p>
+    </div>
+    <div class="col-md-6">
+      <%= image_tag "navigation.png", class: "w-100" %>
+    </div>
+  </div>
+</div>
 
 <p>This page will highlight what Local Response is and does </p>
 <%= link_to "I want to volunteer in my area", jobs_path, class: "btn btn-outline-secondary mb-2" %>
 <%= link_to "I am looking for help", new_job_path, class: "btn btn-outline-secondary mb-2" %>
+
