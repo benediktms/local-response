@@ -2,7 +2,6 @@
 
 <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
 
-
 <div id="map"
       class=" rounded shadow"
       data-markers="<%= @markers.to_json %>"
@@ -15,7 +14,7 @@
     <br>
     Volunteer : <%= @booking.user.first_name%>
     <br>
-    Booking status : 
+    Booking status :
     <% if !@booking.confirmed %> This booking has not been confirmed
     <% elsif !@booking.completed %> This booking has not been completed
     <% end %>
@@ -24,23 +23,23 @@
 <% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
 
   <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>
-   
+
   <div class="row">
     <%= link_to confirm_booking_path(@booking), method: 'PATCH' do %>
       <button class="btn btn-outline-secondary mb-2"> Confirm this booking </button>
       <% end %>
   </div>
-  
+
   <% end %>
- 
+
 <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
   <% if current_user.id == @booking.user_id && !@booking.completed %>
-  
+
   <div class="row">
     <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
       <button class="btn btn-outline-secondary mb-2"> I have completed this job </button>
-      <% end %>  
+      <% end %>
   </div>
 
  <% end %>

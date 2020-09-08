@@ -44,7 +44,17 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    # TODO: render the current user's address as a mpa marker
+    if current_user
+      @marker = current_user.address do |user|
+        {
+          lat: user.latitude,
+          long: user.longitude
+        }
+      end
+    end
+  end
 
   def confirm
     set_booking
