@@ -52,7 +52,7 @@ class BookingsController < ApplicationController
     decline
     redirect_to bookings_path
   end
-    
+
   def complete
     # @booking = Booking.find(params[:id])
     @booking.completed = true
@@ -74,7 +74,7 @@ class BookingsController < ApplicationController
      # booking.declined = true
   end
     # TODO create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
-  
+
   private
 
   def set_booking
@@ -103,7 +103,7 @@ def any_received_booking_confirmed_not_completed?
    return true if count > 0
  end
  helper_method :any_received_booking_confirmed_not_completed?
- 
+
  # this method will return true if there is at least one received_booking completed
   def any_received_booking_completed?
   count = 0
@@ -125,7 +125,7 @@ def any_requested_booking_confirmed_not_completed?
    return true if count > 0
  end
  helper_method :any_requested_booking_confirmed_not_completed?
- 
+
  # this method will return true if there is at least one requested_booking completed
   def any_requested_booking_completed?
   count = 0
@@ -136,4 +136,5 @@ def any_requested_booking_confirmed_not_completed?
     return true if count > 0
   end
   helper_method :any_requested_booking_completed?
+  end
 end
