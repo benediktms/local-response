@@ -14,10 +14,7 @@
       <h2>Job listings</h2>
       <ul>
         <% @jobs.each do |job| %>
-          <% if job.user.id != current_user.id %>
           <li> <%= job.id %> "<%= link_to job.title, job_path(job) %>" : <%= job.user.first_name %> needs help on <%= job.due_date %> </li>
-          <% else%>
-          <% end %>
         <% end %>
       </ul>
     </div>
