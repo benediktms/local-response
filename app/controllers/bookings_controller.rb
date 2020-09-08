@@ -15,6 +15,7 @@ class BookingsController < ApplicationController
       if booking.job.user_id == current_user.id
         booking_array.push(booking)
       end
+    end
 
         @received_bookings = booking_array
 
@@ -137,4 +138,4 @@ def any_requested_booking_confirmed_not_completed?
   end
   helper_method :any_requested_booking_completed?
   end
-end
+# end
