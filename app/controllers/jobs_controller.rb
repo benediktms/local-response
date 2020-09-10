@@ -7,7 +7,7 @@ class JobsController < ApplicationController
 
   def index
     # @jobs = Job.geocoded
-    @user_markers = @jobs.map do |job|
+    @markers = @jobs.map do |job|
       {
         lat: job.latitude,
         long: job.longitude,
