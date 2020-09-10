@@ -51,11 +51,11 @@ class BookingsController < ApplicationController
         long: current_user.longitude
       }
     end
-    job = @booking.job
-    @job_marker = job do
+    @job = @booking.job
+    @job_marker =
       {
-        lat: job.latitude,
-        long: job.longitude
+        lat: @job.latitude,
+        long: @job.longitude
       }
   end
 
@@ -87,9 +87,9 @@ class BookingsController < ApplicationController
     # @bookings.each do |booking|
     # booking.declined = true
   end
-   # TODO: create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
+  # TODO: create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
 
-   private
+  private
 
   def set_booking
     # raise
@@ -148,7 +148,6 @@ class BookingsController < ApplicationController
       count += 1 if booking.completed
     end
     return true if count > 0
-    end
+  end
   helper_method :any_requested_booking_completed?
- end
-# end
+end
