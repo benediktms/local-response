@@ -45,18 +45,15 @@ class BookingsController < ApplicationController
 
   def show
     # TODO: render the current user's address as a map marker
-    @user_marker = current_user do
-      {
-        lat: current_user.latitude,
-        long: current_user.longitude
-      }
-    end
-    @job = @booking.job
-    @job_marker =
-      {
-        lat: @job.latitude,
-        long: @job.longitude
-      }
+    @markers = []
+    @markers << {
+      lat: current_user.latitude,
+      long: current_user.longitude
+    }
+    @markers << {
+      lat: @booking.job.latitude,
+      long: @booking.job.longitude
+    }
   end
 
   def confirm
