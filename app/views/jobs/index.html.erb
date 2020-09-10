@@ -9,14 +9,21 @@
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-  <div class="row">
-    <div>
-      <h2>Job listings</h2>
-      <ul>
-        <% @jobs.each do |job| %>
-          <li> <%= job.id %> "<%= link_to job.title, job_path(job) %>" : <%= job.user.first_name %> needs help on <%= job.due_date %> </li>
+
+  <div class="container ">
+    <div class="row">
+      <div class="cards-product justify-content-center">
+      <% @jobs.each do |job| %>
+        <% if job.user.id != current_user.id %>
+          <div class="card-product col-12 mx-3 my-3 ">
+            <div class="card-product-info">
+              <h2><%= link_to job.title, job_path(job) %></h2>
+              <p>Help <%= job.user.first_name %> on <%= job.due_date.strftime("%A, %b %d") %></p>
+            </div>
+          </div>
+         <% end %>
         <% end %>
-      </ul>
+       </div>
     </div>
   </div>
 </div>
