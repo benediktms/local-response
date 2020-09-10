@@ -47,8 +47,8 @@ class BookingsController < ApplicationController
     # TODO: render the current user's address as a map marker
     @markers = []
     @markers << {
-      lat: current_user.latitude,
-      long: current_user.longitude
+      lat: @booking.user.latitude,
+      long: @booking.user.longitude
     }
     @markers << {
       lat: @booking.job.latitude,
