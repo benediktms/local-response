@@ -11,7 +11,7 @@ class JobsController < ApplicationController
       {
         lat: job.latitude,
         long: job.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { job: job })
+        infoWindow: render_to_string(partial: 'info_window', locals: { job: job })
       }
     end
   end
@@ -48,21 +48,21 @@ class JobsController < ApplicationController
   end
 
   def filter_jobs?
-  # will return true if current_user (i) has not booked job and (ii) has not posted job.
-  test_array = []
-  test_array << @job.user_id
+    # will return true if current_user (i) has not booked job and (ii) has not posted job.
+    test_array = []
+    test_array << @job.user_id
     @job.bookings.each do |booking|
       test_array << booking.user.id
     end
-  return true if !test_array.include? current_user.id
+    return true unless test_array.include? current_user.id
   end
   helper_method :filter_jobs?
 
   def render_jobs
-    if current_user
-      @jobs = Job.geocoded.where("user_id != '#{current_user.id}'")
-    else
-      @jobs = Job.geocoded
-    end
+    @jobs = if current_user
+              Job.geocoded.where("user_id != '#{current_user.id}'")
+            else
+              Job.geocoded
+            end
   end
 end
