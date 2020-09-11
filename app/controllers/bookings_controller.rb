@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_booking, only: %i[show complete decline]
@@ -100,7 +102,7 @@ class BookingsController < ApplicationController
     @received_bookings.each do |booking|
       count += 1 if !booking.confirmed && !booking.declined
     end
-    return true if count > 0
+    true if count.positive?
   end
   helper_method :any_received_booking_not_confirmed_and_not_declined?
 
@@ -111,7 +113,7 @@ class BookingsController < ApplicationController
     @received_bookings.each do |booking|
       count += 1 if booking.confirmed && !booking.completed
     end
-    return true if count > 0
+    true if count.positive?
   end
   helper_method :any_received_booking_confirmed_not_completed?
 
@@ -122,7 +124,7 @@ class BookingsController < ApplicationController
     @received_bookings.each do |booking|
       count += 1  if booking.completed
     end
-    return true if count > 0
+    true if count.positive?
   end
   helper_method :any_received_booking_completed?
 
@@ -133,8 +135,8 @@ class BookingsController < ApplicationController
     @requested_bookings.each do |booking|
       count += 1 if booking.confirmed && !booking.completed
     end
-    return true if count > 0
-   end
+    true if count.positive?
+  end
   helper_method :any_requested_booking_confirmed_not_completed?
 
   # this method will return true if there is at least one requested_booking completed
@@ -144,7 +146,7 @@ class BookingsController < ApplicationController
     @requested_bookings.each do |booking|
       count += 1 if booking.completed
     end
-    return true if count > 0
+    true if count.positive?
   end
   helper_method :any_requested_booking_completed?
 end
