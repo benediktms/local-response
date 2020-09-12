@@ -25,7 +25,9 @@ require("channels")
 // External imports
 import "bootstrap";
 import { initMapbox } from "../plugins/init_mapbox";
+// import { getRoute } from "../plugins/nav_mapbox.js";
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  // getRoute();
 });
