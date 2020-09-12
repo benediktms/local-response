@@ -9,8 +9,8 @@ class JobsController < ApplicationController
     if params[:job].present?
       @jobs = Job.where(category_id: params[:job][:query])
     else
-      @jobs = Job.all
-    end
+      @jobs = Job.geocoded
+  
       @markers = @jobs.map do |job|
         {
           lat: job.latitude,
@@ -18,7 +18,7 @@ class JobsController < ApplicationController
           infoWindow: render_to_string(partial: 'info_window', locals: { job: job })
         }
       end
-    
+    end  
   end
 
   def new
