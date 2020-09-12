@@ -1,0 +1,10 @@
+<%= simple_form_for @booking do |f| %>
+  <%= f.error_notification %>
+
+
+<%= f.input :photo, as: :file %>
+
+<%= f.button :submit, class: "btn-primary" %>
+<% end %>
+
+<%= link_to 'Cancel', bookings_path, class: "btn-outline-secondary"  %>
