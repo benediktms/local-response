@@ -6,14 +6,19 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    # @jobs = Job.geocoded
-    @markers = @jobs.map do |job|
-      {
-        lat: job.latitude,
-        long: job.longitude,
-        infoWindow: render_to_string(partial: 'info_window', locals: { job: job })
-      }
+    if params[:job].present?
+      @jobs = Job.where(category_id: params[:job][:query])
+    else
+      @jobs = Job.all
     end
+      @markers = @jobs.map do |job|
+        {
+          lat: job.latitude,
+          long: job.longitude,
+          infoWindow: render_to_string(partial: 'info_window', locals: { job: job })
+        }
+      end
+    
   end
 
   def new
@@ -40,7 +45,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :address, :due_date, :category_id, :start_time, :end_time, :longitude, :latitude, :price)
+    params.require(:job).permit(:title, :description, :address, :due_date, :category_id, :query, :start_time, :end_time, :longitude, :latitude, :price)
   end
 
   def set_job
