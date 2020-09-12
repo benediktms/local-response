@@ -39,4 +39,7 @@ yarn-debug.log*
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
-./idea
+
+# editor config files
+/.idea
+/.vscode
