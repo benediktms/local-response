@@ -12,7 +12,7 @@
     <br>
     Booking id : <%= @booking.id %>
     <br>
-    Volunteer : <%= @booking.user.first_name%>
+    Volunteer : <%= @booking.user.first_name %>
     <br>
     Booking status :
     <% if !@booking.confirmed %> This booking has not been confirmed
@@ -29,8 +29,16 @@
       <button class="btn btn-outline-secondary mb-2"> Confirm this booking </button>
       <% end %>
   </div>
-
   <% end %>
+
+<!--   <% if current_user.id == @booking.job.user_id && @booking.confirmed %>
+    <%= link_to chatroom_path(@chatroom, @message), method:'GET' do %>
+    <button class="btn btn-outline-secondary mb-2"> Chat about this job </button>
+     <% end %>
+  <% end %> -->
+
+
+
 
 <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
