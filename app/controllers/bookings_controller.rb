@@ -14,8 +14,10 @@ class BookingsController < ApplicationController
     # @received_bookings are the bookings received by current_user (as person seeking help)
     booking_array = []
     Booking.all.each do |booking|
-      # booking_array << booking if booking.job.user_id == current_user.id
-      booking_array.push(booking) if booking.job.user_id == current_user.id
+      if booking.job.user_id == current_user.id
+        # booking_array << booking if booking.job.user_id == current_user.id
+        booking_array.push(booking)
+      end
     end
 
     @received_bookings = booking_array
@@ -48,14 +50,8 @@ class BookingsController < ApplicationController
   def show
     # TODO: render the current user's address as a map marker
     @markers = []
-    @markers << {
-      lat: @booking.user.latitude,
-      long: @booking.user.longitude
-    }
-    @markers << {
-      lat: @booking.job.latitude,
-      long: @booking.job.longitude
-    }
+    @markers << { lat: @booking.user.latitude, long: @booking.user.longitude }
+    @markers << { lat: @booking.job.latitude, long: @booking.job.longitude }
   end
 
   def confirm
@@ -121,9 +117,7 @@ class BookingsController < ApplicationController
   def any_received_booking_completed?
     count = 0
     index
-    @received_bookings.each do |booking|
-      count += 1  if booking.completed
-    end
+    @received_bookings.each { |booking| count += 1 if booking.completed }
     true if count.positive?
   end
   helper_method :any_received_booking_completed?
@@ -143,9 +137,7 @@ class BookingsController < ApplicationController
   def any_requested_booking_completed?
     count = 0
     index
-    @requested_bookings.each do |booking|
-      count += 1 if booking.completed
-    end
+    @requested_bookings.each { |booking| count += 1 if booking.completed }
     true if count.positive?
   end
   helper_method :any_requested_booking_completed?

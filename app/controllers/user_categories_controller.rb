@@ -1,2 +1,1 @@
-class UserCategoriesController < ApplicationController
-end
+class UserCategoriesController < ApplicationController; end

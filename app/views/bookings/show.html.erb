@@ -1,18 +1,11 @@
 <div class="container">
 
-<<<<<<< Updated upstream
-<h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
+  <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
 
-<div id="map"
-      class=" rounded shadow"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-=======
   <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
->>>>>>> Stashed changes
 
-   <div class="row">
+  <div class="row">
     Booking details:
     <br>
     Booking id : <%= @booking.id %>
@@ -25,7 +18,7 @@
     <% end %>
   </div>
 
-<% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
+  <% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
 
   <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>
 
@@ -37,7 +30,7 @@
 
   <% end %>
 
-<% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
+  <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
   <% if current_user.id == @booking.user_id && !@booking.completed %>
 

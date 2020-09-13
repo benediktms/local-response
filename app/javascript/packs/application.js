@@ -21,13 +21,8 @@ require('channels');
 // ----------------------------------------------------
 
 // External imports
-<<<<<<< Updated upstream
-import "bootstrap";
-import { initMapbox } from "../plugins/init_mapbox";
-=======
 import 'bootstrap';
 import { initMapbox } from '../plugins/mapbox/init';
->>>>>>> Stashed changes
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();

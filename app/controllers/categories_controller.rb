@@ -1,2 +1,1 @@
-class CategoriesController < ApplicationController
-end
+class CategoriesController < ApplicationController; end
