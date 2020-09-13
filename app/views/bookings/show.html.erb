@@ -1,11 +1,16 @@
 <div class="container">
 
+<<<<<<< Updated upstream
 <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
 
 <div id="map"
       class=" rounded shadow"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+=======
+  <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+>>>>>>> Stashed changes
 
    <div class="row">
     Booking details:
@@ -26,8 +31,8 @@
 
   <div class="row">
     <%= link_to confirm_booking_path(@booking), method: 'PATCH' do %>
-      <button class="btn btn-outline-secondary mb-2"> Confirm this booking </button>
-      <% end %>
+    <button class="btn btn-outline-secondary mb-2"> Confirm this booking </button>
+    <% end %>
   </div>
 
   <% end %>
@@ -38,15 +43,13 @@
 
   <div class="row">
     <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
-      <button class="btn btn-outline-secondary mb-2"> I have completed this job </button>
-      <% end %>
+    <button class="btn btn-outline-secondary mb-2"> I have completed this job </button>
+    <% end %>
   </div>
 
- <% end %>
+  <% end %>
 
-<%= link_to "Back to bookings", bookings_path(@bookings), method:'get', class: "btn btn-outline-secondary mb-2" %>
-<%# <%= link_to "Review your job", new_job_booking_review_path, class: "btn btn-outline-secondary mb-2" %>
+  <%= link_to "Back to bookings", bookings_path(@bookings), method:'get', class: "btn btn-outline-secondary mb-2" %>
+  <%# <%= link_to "Review your job", new_job_booking_review_path, class: "btn btn-outline-secondary mb-2" %>
 
 </div>
-
-
