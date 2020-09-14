@@ -5,7 +5,7 @@
   <% if @booking.user == current_user %>
     <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true"></div>
   <% else %>
-    <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="false"></div>
+    <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   <% end %>
 
   <div class="row">

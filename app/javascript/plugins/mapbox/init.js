@@ -13,6 +13,7 @@ export const initMapbox = () => {
   if (mapElement) {
     // checcking if routing is allowed
     const routing = Boolean(mapElement.dataset.route == 'true');
+    const search = Boolean(mapElement.dataset.search == 'true');
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
@@ -30,11 +31,12 @@ export const initMapbox = () => {
 
     // if routing is permitted, get the route
     if (routing) {
-      // console.log('routing true');
       getRoute(map, markers, mapboxgl.accessToken);
-    } else {
-      console.log('routign false');
-      // adding input for address to look up new address
+    }
+
+    // condition to add the search bar to the map
+    if (!routing && search) {
+      console.log('search true');
       map.addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,

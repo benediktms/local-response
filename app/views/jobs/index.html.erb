@@ -6,10 +6,11 @@
     <div id="map"
          class=" rounded shadow"
          data-markers="<%= @markers.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+         data-search="true">
     </div>
   </div>
-  
+
   <div class="row">
     <h2>Job listings</h2>
   </div>
