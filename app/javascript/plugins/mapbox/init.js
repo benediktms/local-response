@@ -4,18 +4,16 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 import { addMarkersToMap } from './add_markers';
 import { fitMapToMarkers } from './fit_markers';
-import { getRoute } from './route/get_route';
+import { getRoute } from './get_route';
 
 export const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
   // only build a map if there's a div#map to inject into
   if (mapElement) {
-    // declaring api key to pass to the getRoute function
-    const apiKey = mapElement.dataset.mapboxApiKey;
     // checcking if routing is allowed
     const routing = Boolean(mapElement.dataset.route == 'true');
-    mapboxgl.accessToken = apiKey;
+    mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -32,11 +30,11 @@ export const initMapbox = () => {
 
     // if routing is permitted, get the route
     if (routing) {
-      console.log('routing true');
-      getRoute(map, markers, apiKey);
+      // console.log('routing true');
+      getRoute(map, markers, mapboxgl.accessToken);
     } else {
       console.log('routign false');
-      // adding input for address
+      // adding input for address to look up new address
       map.addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,

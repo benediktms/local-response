@@ -48,9 +48,10 @@ class BookingsController < ApplicationController
   end
 
   def show
-    # TODO: render the current user's address as a map marker
     @markers = []
+    # user's home coordinates
     @markers << { lat: @booking.user.latitude, long: @booking.user.longitude }
+    # current job coordinates
     @markers << { lat: @booking.job.latitude, long: @booking.job.longitude }
   end
 
