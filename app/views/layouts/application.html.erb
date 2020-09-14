@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>LocalResponse</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<head>
+  <title>LocalResponse</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 
-  <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+</head>
 
-    <%= yield %>
-  </body>
+<body>
+  <%= render 'shared/navbar' %>
+  <%= render 'shared/flashes' %>
+
+  <%= yield %>
+</body>
+
 </html>

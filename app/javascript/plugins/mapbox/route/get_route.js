@@ -6,14 +6,12 @@ export const getRoute = async (map, coordinates, apiKey) => {
     `${coordinates[1].lat},${coordinates[1].long}` +
     '?steps=true&geometries=geojson&access_token=' +
     `${apiKey}`;
-  console.log(coordinates);
 
   const response = await fetch(url);
   if (response.ok) {
-    console.log(`Success status: ${response.status}`);
     const data = await response.json();
     const route = data.routes[0].geometry.coordinates;
-    console.log(route);
+    console.log(coordinates);
     const geojson = {
       type: 'Feature',
       properties: {},
@@ -28,7 +26,7 @@ export const getRoute = async (map, coordinates, apiKey) => {
       map.getSource('route').setData(geojson);
     } else {
       // otherwise, make a new request
-      console.log('adding map layer')
+      console.log('adding map layer');
       map.addLayer({
         id: 'route',
         type: 'line',
