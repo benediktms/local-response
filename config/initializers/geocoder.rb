@@ -1,1 +1,1 @@
-Geocoder.configure()
+Geocoder.configure
