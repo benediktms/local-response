@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Job < ApplicationRecord
   # This user is the person who created the job
   geocoded_by :address

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JobsController < ApplicationController
   before_action :set_job, only: :show
   before_action :job_params, only: :create
