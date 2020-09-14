@@ -2,8 +2,11 @@
 
   <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
 
-  <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
-  </div>
+  <% if @booking.user == current_user %>
+    <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true"></div>
+  <% else %>
+    <div id="map" class=" rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="false"></div>
+  <% end %>
 
   <div class="row">
     Booking details:
