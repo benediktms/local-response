@@ -36,10 +36,10 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'pry-byebug'
+gem 'simple_form'
 group :development, :test do
   gem 'dotenv-rails'
   gem 'pry-rails'
-  gem 'simple_form'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
