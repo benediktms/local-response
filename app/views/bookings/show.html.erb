@@ -35,11 +35,11 @@
   </div>
   <% end %>
 
-<!--   <% if current_user.id == @booking.job.user_id && @booking.confirmed %>
-    <%= link_to chatroom_path(@chatroom, @message), method:'GET' do %>
-    <button class="btn btn-outline-secondary mb-2"> Chat about this job </button>
-     <% end %>
-  <% end %> -->
+<h1><%= @chatroom.name %></h1>
+<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+<% end %>
+
 
 <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 

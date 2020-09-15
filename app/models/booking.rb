@@ -3,4 +3,5 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :job
   has_many :reviews
+  has_one :chatroom
 end

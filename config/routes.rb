@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :jobs do
     post '/bookings', to: 'bookings#create', as: 'quick_create'
     resources :bookings, only: %i[show] do
+      resources :chatrooms, only: :show do
+        resources :messages, only: :create
+      end
       resources :reviews, only: %i[show new create update edit destroy]
     end
   end
@@ -11,8 +14,8 @@ Rails.application.routes.draw do
     patch :complete, on: :member
     patch :confirm, on: :member
   end
-  resources :chatrooms, only: :show do
-    resources :messages, only: :create
-  end
+  # resources :chatrooms, only: :show do
+  #   resources :messages, only: :create
+  # end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
