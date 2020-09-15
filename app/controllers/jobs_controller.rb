@@ -74,17 +74,7 @@ class JobsController < ApplicationController
 
   def render_jobs
     @jobs =
-      if current_user && params[:job].present?
-        Job.geocoded.where(
-          "user_id != '#{current_user.id}'",
-          category_id: params[:job][:query]
-        )
-      elsif current_user && !params[:job].present?
-        Job.geocoded.where("user_id != '#{current_user.id}'")
-      elsif !current_user && params[:job].present?
-        Job.where(category_id: params[:job][:query])
-      elsif !current_user && !params[:job].present?
         Job.geocoded
-      end
+    
   end
 end
