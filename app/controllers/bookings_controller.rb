@@ -39,7 +39,7 @@ class BookingsController < ApplicationController
     @booking.confirmed = false
     @booking.declined = false
     if @booking.save
-      @chatroom = Chatroom.create(booking: @booking)
+      @chatroom = Chatroom.create({booking: @booking, name: @booking.job.title})
       redirect_to bookings_path
     else
       render 'jobs'
