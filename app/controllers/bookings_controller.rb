@@ -46,6 +46,10 @@ class BookingsController < ApplicationController
   end
 
   def show
+    # TODO: render the current user's address as a map marker
+    # @chatroom =Chatroom.find(params[:id])
+    # @message = Message.new
+
     @markers = []
     @markers << {
       lat: @booking.user.latitude,
