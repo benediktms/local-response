@@ -6,15 +6,13 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-   render_jobs
       @markers = @jobs.map do |job|
         {
           lat: job.latitude,
           long: job.longitude,
           infoWindow: render_to_string(partial: 'info_window', locals: { job: job })
         }
-      end
-    
+      end  
   end
 
   def new
