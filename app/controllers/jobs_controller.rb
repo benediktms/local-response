@@ -6,11 +6,7 @@ class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    if params[:job].present?
-      @jobs = Job.where(category_id: params[:job][:query])
-    else
-      @jobs = Job.all
-    end
+   render_jobs
       @markers = @jobs.map do |job|
         {
           lat: job.latitude,
@@ -64,10 +60,14 @@ class JobsController < ApplicationController
   helper_method :filter_jobs?
 
   def render_jobs
-    @jobs = if current_user
-              Job.geocoded.where("user_id != '#{current_user.id}'")
-            else
-              Job.geocoded
+   @jobs = if current_user && params[:job].present?
+            Job.geocoded.where("user_id != '#{current_user.id}'", category_id: params[:job][:query])
+            elseif current_user && !params[:job].present?
+            Job.geocoded.where("user_id != '#{current_user.id}'")
+            elseif !current_user && params[:job].present?
+            Job.where(category_id: params[:job][:query])
+            elseif !current_user && !params[:job].present?
+            Job.geocoded
             end
   end
 end
