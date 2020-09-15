@@ -1,5 +1,5 @@
 # Welcome to Local Response
-Live demo: https://local-response.herokuapp.com/
+Live demo: http://www.local-response.xyz/
 
 ## Plans
 - user image hosting with Cloudinary
