@@ -11,6 +11,14 @@
     </div>
   </div>
 
+<div class="row">
+   <h2>Filter by job category</h2>
+   <%= form_tag jobs_path, method: :get do %>
+   <%= collection_select(:job, :query, Category.all, :id, :name) %>
+   <%= submit_tag "Filter by category", class: "btn btn-outline-secondary" %>
+   <% end %>
+</div>
+
   <div class="row">
     <h2>Job listings</h2>
   </div>

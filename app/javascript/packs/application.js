@@ -22,9 +22,10 @@ require('channels');
 
 // External imports
 import 'bootstrap';
-import { initMapbox } from '../plugins/mapbox/init';
+import { initMapbox } from '../plugins/init_mapbox';
+import { initChatroomCable } from '../channels/chatroom_channel';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
-  // getRoute();
+  initChatroomCable();
 });

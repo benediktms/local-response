@@ -1,7 +1,6 @@
 <div class="container">
   <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
 
-<<<<<<< HEAD
   <% if @booking.user == current_user %>
     <div
       id="map"
@@ -18,25 +17,14 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   <% end %>
-=======
-  <div id="map"
-      class=" rounded shadow"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-
-  <div class="row">
-    <button class="btn btn-primary shadow" onclick="getRoute()">Start!</button>
-  </div>
->>>>>>> master
 
   <div class="row">
     Booking details:
     <br />
     Booking id : <%= @booking.id %>
-    <br />
-    Volunteer : <%= @booking.user.first_name%>
-    <br />
+    <br>
+    Volunteer : <%= @booking.user.first_name %>
+    <br>
     Booking status :
     <% if !@booking.confirmed %>
       This booking has not been confirmed
@@ -51,10 +39,17 @@
       <%= link_to confirm_booking_path(@booking), method: 'PATCH' do %>
       <button class="btn btn-outline-secondary mb-2">Confirm this booking</button>
       <% end %>
-    </div>
+  </div>
   <% end %>
 
-  <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
+<!--   <% if current_user.id == @booking.job.user_id && @booking.confirmed %>
+    <%= link_to chatroom_path(@chatroom, @message), method:'GET' do %>
+    <button class="btn btn-outline-secondary mb-2"> Chat about this job </button>
+     <% end %>
+  <% end %> -->
+
+<% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
+
   <% if current_user.id == @booking.user_id && !@booking.completed %>
     <div class="row">
       <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>

@@ -50,6 +50,7 @@ class JobsController < ApplicationController
       :address,
       :due_date,
       :category_id,
+      :query,
       :start_time,
       :end_time,
       :longitude,
@@ -73,9 +74,16 @@ class JobsController < ApplicationController
 
   def render_jobs
     @jobs =
-      if current_user
+      if current_user && params[:job].present?
+        Job.geocoded.where(
+          "user_id != '#{current_user.id}'",
+          category_id: params[:job][:query]
+        )
+        elseif current_user && !params[:job].present?
         Job.geocoded.where("user_id != '#{current_user.id}'")
-      else
+        elseif !current_user && params[:job].present?
+        Job.where(category_id: params[:job][:query])
+        elseif !current_user && !params[:job].present?
         Job.geocoded
       end
   end
