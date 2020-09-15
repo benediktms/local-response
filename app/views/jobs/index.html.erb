@@ -6,15 +6,16 @@
     <div id="map"
          class=" rounded shadow"
          data-markers="<%= @markers.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+         data-search="true">
     </div>
   </div>
-  
+
 <div class="row">
    <h2>Filter by job category</h2>
    <%= form_tag jobs_path, method: :get do %>
    <%= collection_select(:job, :query, Category.all, :id, :name) %>
-   <%= submit_tag "Filter by category", class: "btn btn-outline-secondary" %> 
+   <%= submit_tag "Filter by category", class: "btn btn-outline-secondary" %>
    <% end %>
 </div>
 
