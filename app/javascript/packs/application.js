@@ -26,4 +26,5 @@ import { initMapbox } from '../plugins/mapbox/init';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  // getRoute();
 });
