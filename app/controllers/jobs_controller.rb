@@ -79,11 +79,11 @@ class JobsController < ApplicationController
           "user_id != '#{current_user.id}'",
           category_id: params[:job][:query]
         )
-        elseif current_user && !params[:job].present?
+      elsif current_user && !params[:job].present?
         Job.geocoded.where("user_id != '#{current_user.id}'")
-        elseif !current_user && params[:job].present?
+      elsif !current_user && params[:job].present?
         Job.where(category_id: params[:job][:query])
-        elseif !current_user && !params[:job].present?
+      elsif !current_user && !params[:job].present?
         Job.geocoded
       end
   end
