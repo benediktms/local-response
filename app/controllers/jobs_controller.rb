@@ -73,18 +73,17 @@ class JobsController < ApplicationController
   helper_method :filter_jobs?
 
   def render_jobs
-    @jobs =
-      if current_user && params[:job].present?
-        Job.geocoded.where(
-          "user_id != '#{current_user.id}'",
-          category_id: params[:job][:query]
-        )
-      elsif current_user && !params[:job].present?
-        Job.geocoded.where("user_id != '#{current_user.id}'")
-      elsif !current_user && params[:job].present?
-        Job.where(category_id: params[:job][:query])
-      elsif !current_user && !params[:job].present?
+    @jobs_selection =
+      if params[:job].present?
+        Job.geocoded.where(category_id: params[:job][:query])
+      else
         Job.geocoded
+      end
+    @jobs =
+      if current_user
+        @jobs_selection.where("user_id != '#{current_user.id}'")
+      else
+        @jobs_selection
       end
   end
 end
