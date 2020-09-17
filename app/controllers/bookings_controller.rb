@@ -50,6 +50,7 @@ class BookingsController < ApplicationController
 
   def show
     # TODO: render the current user's address as a map marker
+    @chatroom = @booking.chatroom
     @message = Message.new
     @markers = []
     # user's home coordinates
