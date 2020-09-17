@@ -31,9 +31,11 @@
     <br>
     Booking status :
     <% if !@booking.confirmed %>
-    This booking has not been confirmed
-    <% elsif !@booking.completed %>
-    This booking has not been completed
+      This booking has not been confirmed
+    <% elsif @booking.confirmed && !@booking.completed %>
+      This booking has been confirmed but not been completed
+    <% elsif @booking.completed %>
+      This booking has been completed
     <% end %>
   </div>
   <div class="row">
@@ -51,14 +53,14 @@
 
   <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
-  <% if current_user.id == @booking.user_id && !@booking.completed %>
-  <div class="row">
-    <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
-    <button class="btn btn-outline-secondary mb-2">
-      I have completed this job
-    </button>
-    <% end %>
-  </div>
+  <% if current_user.id == @booking.user_id && @booking.confirmed && !@booking.completed %>
+    <div class="row">
+      <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
+      <button class="btn btn-outline-secondary mb-2">
+        I have completed this job
+      </button>
+      <% end %>
+    </div>
   <% end %>
 
   <%= link_to "Back to bookings", bookings_path(@bookings), method:'get', class: "btn btn-outline-secondary mb-2" %>
