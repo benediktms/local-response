@@ -1,3 +1,5 @@
+import { addDirections } from './add_directions';
+
 export const getRoute = async (map, coordinates, apiKey) => {
   const startCoords = [coordinates[0].long, coordinates[0].lat];
   const endCoords = [coordinates[1].long, coordinates[1].lat];
@@ -16,6 +18,7 @@ export const getRoute = async (map, coordinates, apiKey) => {
   if (!response.ok) {
     throw new Error(response.error);
   } else {
+    addDirections(data);
     // if the route already exists on the map, reset it using setData
     if (map.getSource('route')) {
       console.log('set route data');
