@@ -1,3 +1,5 @@
+import { addDirections } from './add_directions';
+
 export const getRoute = async (map, coordinates, apiKey) => {
   const startCoords = [coordinates[0].long, coordinates[0].lat];
   const endCoords = [coordinates[1].long, coordinates[1].lat];
@@ -16,13 +18,12 @@ export const getRoute = async (map, coordinates, apiKey) => {
   if (!response.ok) {
     throw new Error(response.error);
   } else {
+    addDirections(data);
     // if the route already exists on the map, reset it using setData
     if (map.getSource('route')) {
-      console.log('set route data');
       map.getSource('route').setData(route);
     } else {
       // otherwise, make a new request
-      console.log('adding route map layer');
       map.addLayer({
         id: 'route',
         type: 'line',
@@ -50,10 +51,8 @@ export const getRoute = async (map, coordinates, apiKey) => {
     }
 
     if (map.getLayer('start')) {
-      console.log('set data start');
       map.getSource('start').setData(startCoords);
     } else {
-      console.log('adding start point map layer');
       map.addLayer({
         id: 'start',
         type: 'circle',
@@ -81,10 +80,8 @@ export const getRoute = async (map, coordinates, apiKey) => {
     }
 
     if (map.getLayer('end')) {
-      console.log('set data end');
       map.getSource('end').setData(endCoords);
     } else {
-      console.log('adding end point map layer');
       map.addLayer({
         id: 'end',
         type: 'circle',
