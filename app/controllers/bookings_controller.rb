@@ -74,6 +74,20 @@ class BookingsController < ApplicationController
     redirect_to bookings_path
   end
 
+  def edit
+    set_booking
+  end
+
+  def update
+    set_booking
+    if @booking.update(booking_params)
+    redirect_to bookings_path
+    else
+    render :edit
+    end
+  end
+
+
   def decline
     # get all bookings that are not the current booking and that match the current job
     @job = @booking.job
@@ -90,6 +104,10 @@ class BookingsController < ApplicationController
   # TODO: create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
 
   private
+
+  def booking_params
+    params.require(:booking).permit(invoices: [])
+  end
 
   def set_booking
     # raise
