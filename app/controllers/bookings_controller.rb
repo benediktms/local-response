@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_booking, only: %i[show complete decline]
@@ -7,17 +9,18 @@ class BookingsController < ApplicationController
   before_action :any_requested_booking_confirmed_not_completed?
   before_action :any_requested_booking_completed?
 
-  def index #could be moved to pages view, pages controller as def dashboard
+  def index
+    # could be moved to pages view, pages controller as def dashboard
     # @received_bookings are the bookings received by current_user (as person seeking help)
     booking_array = []
     Booking.all.each do |booking|
-      # booking_array << booking if booking.job.user_id == current_user.id
       if booking.job.user_id == current_user.id
+        # booking_array << booking if booking.job.user_id == current_user.id
         booking_array.push(booking)
       end
     end
 
-        @received_bookings = booking_array
+    @received_bookings = booking_array
 
     @jobs = Job.where(user_id: current_user.id)
     # @requested_bookings are the bookings made by current_user (as volunteer)
@@ -38,13 +41,23 @@ class BookingsController < ApplicationController
     @booking.confirmed = false
     @booking.declined = false
     if @booking.save
+      @chatroom = Chatroom.create({booking: @booking, name: @booking.job.title})
       redirect_to bookings_path
     else
       render 'jobs'
     end
   end
 
-  def show; end
+  def show
+    # TODO: render the current user's address as a map marker
+    @chatroom = @booking.chatroom
+    @message = Message.new
+    @markers = []
+    # user's home coordinates
+    @markers << { lat: @booking.user.latitude, long: @booking.user.longitude }
+    # current job coordinates
+    @markers << { lat: @booking.job.latitude, long: @booking.job.longitude }
+  end
 
   def confirm
     set_booking
@@ -79,16 +92,16 @@ class BookingsController < ApplicationController
     # get all bookings that are not the current booking and that match the current job
     @job = @booking.job
     @job.bookings.each do |booking|
-      booking.declined = true if !booking.confirmed
+      booking.declined = true unless booking.confirmed
       booking.save
-     end
+    end
     # get all bookings that are not the current booking and that match the current job
     # @bookings = Booking.where(id: !@booking.id).select { |booking| booking.job == @job }
     # set declined on all those bookings == true
     # @bookings.each do |booking|
-     # booking.declined = true
+    # booking.declined = true
   end
-    # TODO create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
+  # TODO: create a section for this in the view, the instance of the booking will have to be passed through a link_to tag
 
   private
 
@@ -106,54 +119,49 @@ class BookingsController < ApplicationController
     count = 0
     index
     @received_bookings.each do |booking|
-    count += 1  if !booking.confirmed && !booking.declined
+      count += 1 if !booking.confirmed && !booking.declined
     end
-    return true if count > 0
+    true if count.positive?
   end
-helper_method :any_received_booking_not_confirmed_and_not_declined?
+  helper_method :any_received_booking_not_confirmed_and_not_declined?
 
-# this method will return true if there is at least one received_booking confirmed and not completed
-def any_received_booking_confirmed_not_completed?
-  count = 0
-  index
-  @received_bookings.each do |booking|
-  count += 1  if booking.confirmed && !booking.completed
+  # this method will return true if there is at least one received_booking confirmed and not completed
+  def any_received_booking_confirmed_not_completed?
+    count = 0
+    index
+    @received_bookings.each do |booking|
+      count += 1 if booking.confirmed && !booking.completed
+    end
+    true if count.positive?
   end
-   return true if count > 0
- end
- helper_method :any_received_booking_confirmed_not_completed?
+  helper_method :any_received_booking_confirmed_not_completed?
 
- # this method will return true if there is at least one received_booking completed
+  # this method will return true if there is at least one received_booking completed
   def any_received_booking_completed?
-  count = 0
-  index
-  @received_bookings.each do |booking|
-  count += 1  if booking.completed
-    end
-    return true if count > 0
+    count = 0
+    index
+    @received_bookings.each { |booking| count += 1 if booking.completed }
+    true if count.positive?
   end
   helper_method :any_received_booking_completed?
 
-# this method will return true if there is at least one requested_booking confirmed and not completed
-def any_requested_booking_confirmed_not_completed?
-  count = 0
-  index
-  @requested_bookings.each do |booking|
-  count += 1  if booking.confirmed && !booking.completed
-  end
-   return true if count > 0
- end
- helper_method :any_requested_booking_confirmed_not_completed?
-
- # this method will return true if there is at least one requested_booking completed
-  def any_requested_booking_completed?
-  count = 0
-  index
-  @requested_bookings.each do |booking|
-  count += 1  if booking.completed
+  # this method will return true if there is at least one requested_booking confirmed and not completed
+  def any_requested_booking_confirmed_not_completed?
+    count = 0
+    index
+    @requested_bookings.each do |booking|
+      count += 1 if booking.confirmed && !booking.completed
     end
-    return true if count > 0
+    true if count.positive?
+  end
+  helper_method :any_requested_booking_confirmed_not_completed?
+
+  # this method will return true if there is at least one requested_booking completed
+  def any_requested_booking_completed?
+    count = 0
+    index
+    @requested_bookings.each { |booking| count += 1 if booking.completed }
+    true if count.positive?
   end
   helper_method :any_requested_booking_completed?
-  end
-# end
+end

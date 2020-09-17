@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JobsController < ApplicationController
   before_action :set_job, only: :show
   before_action :job_params, only: :create
@@ -7,13 +9,15 @@ class JobsController < ApplicationController
 
   def index
     # @jobs = Job.geocoded
-    @markers = @jobs.map do |job|
-      {
-        lat: job.latitude,
-        long: job.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { job: job })
-      }
-    end
+    @markers =
+      @jobs.map do |job|
+        {
+          lat: job.latitude,
+          long: job.longitude,
+          infoWindow:
+            render_to_string(partial: 'info_window', locals: { job: job })
+        }
+      end
   end
 
   def new
@@ -40,7 +44,19 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :address, :due_date, :category_id, :start_time, :end_time, :longitude, :latitude, :price)
+    params.require(:job).permit(
+      :title,
+      :description,
+      :address,
+      :due_date,
+      :category_id,
+      :query,
+      :start_time,
+      :end_time,
+      :longitude,
+      :latitude,
+      :price
+    )
   end
 
   def set_job
@@ -48,21 +64,27 @@ class JobsController < ApplicationController
   end
 
   def filter_jobs?
-  # will return true if current_user (i) has not booked job and (ii) has not posted job.
-  test_array = []
-  test_array << @job.user_id
-    @job.bookings.each do |booking|
-      test_array << booking.user.id
-    end
-  return true if !test_array.include? current_user.id
+    # will return true if current_user (i) has not booked job and (ii) has not posted job.
+    test_array = []
+    test_array << @job.user_id
+    @job.bookings.each { |booking| test_array << booking.user.id }
+    return true unless test_array.include? current_user.id
   end
   helper_method :filter_jobs?
 
   def render_jobs
-    if current_user
-      @jobs = Job.geocoded.where("user_id != '#{current_user.id}'")
-    else
-      @jobs = Job.geocoded
-    end
+    @jobs_selection =
+      if params[:job].present?
+        Job.geocoded.where(category_id: params[:job][:query])
+      else
+        Job.geocoded
+      end
+    @jobs =
+      if current_user
+        @jobs_selection.where("user_id != '#{current_user.id}'")
+      else
+        @jobs_selection
+      end
   end
+
 end

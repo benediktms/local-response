@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_09_12_115626) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,51 +50,69 @@ ActiveRecord::Schema.define(version: 2020_09_12_115626) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table 'categories', force: :cascade do |t|
+    t.string 'name'
+    t.string 'image'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
+
+  create_table 'jobs', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'category_id', null: false
+    t.string 'title'
+    t.string 'description'
+    t.string 'address'
+    t.datetime 'due_date'
+    t.integer 'start_time'
+    t.integer 'end_time'
+    t.float 'longitude'
+    t.float 'latitude'
+    t.float 'price'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[category_id], name: 'index_jobs_on_category_id'
+    t.index %w[user_id], name: 'index_jobs_on_user_id'
+  end
+
+  create_table 'reviews', force: :cascade do |t|
+    t.bigint 'booking_id', null: false
+    t.integer 'rating'
+    t.string 'title'
+    t.string 'description'
+    t.boolean 'tasker'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.bigint 'user_id', null: false
+    t.index %w[booking_id], name: 'index_reviews_on_booking_id'
+    t.index %w[user_id], name: 'index_reviews_on_user_id'
+
+  create_table "chatrooms", force: :cascade do |t|
     t.string "name"
-    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "jobs", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
-    t.string "title"
-    t.string "description"
-    t.string "address"
-    t.datetime "due_date"
-    t.integer "start_time"
-    t.integer "end_time"
-    t.float "longitude"
-    t.float "latitude"
-    t.float "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_jobs_on_category_id"
-    t.index ["user_id"], name: "index_jobs_on_user_id"
-  end
-
-  create_table "reviews", force: :cascade do |t|
     t.bigint "booking_id", null: false
-    t.integer "rating"
-    t.string "title"
-    t.string "description"
-    t.boolean "tasker"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["booking_id"], name: "index_reviews_on_booking_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["booking_id"], name: "index_chatrooms_on_booking_id"
   end
 
-  create_table "user_categories", force: :cascade do |t|
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_user_categories_on_category_id"
-    t.index ["user_id"], name: "index_user_categories_on_user_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table 'user_categories', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'category_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[category_id], name: 'index_user_categories_on_category_id'
+    t.index %w[user_id], name: 'index_user_categories_on_user_id'
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,6 +128,9 @@ ActiveRecord::Schema.define(version: 2020_09_12_115626) do
     t.string "address"
     t.string "photo"
     t.boolean "admin"
+    t.float "longitude"
+    t.float "latitude"
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -117,8 +138,11 @@ ActiveRecord::Schema.define(version: 2020_09_12_115626) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "jobs"
   add_foreign_key "bookings", "users"
+  add_foreign_key "chatrooms", "bookings"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_categories", "categories"

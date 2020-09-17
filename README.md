@@ -1,1 +1,6 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# Welcome to Local Response
+Live demo: http://www.local-response.xyz/
+
+## Plans
+- user image hosting with Cloudinary
+- Payment handling with Stripe

@@ -6,17 +6,35 @@
     <div id="map"
          class=" rounded shadow"
          data-markers="<%= @markers.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+         data-search="true">
     </div>
   </div>
-  <div class="row">
-    <div>
-      <h2>Job listings</h2>
-      <ul>
+
+<div class="row">
+    <%= link_to "All categories", jobs_path, class: "btn btn-outline-secondary" %>
+    <%= form_tag jobs_path, method: :get do %>
+    <%= collection_select(:job, :query, Category.all, :id, :name) %>
+    <%= submit_tag "Filter by category", class: "btn btn-outline-secondary" %>
+    <% end %>
+</div>
+
+ 
+
+  <div class="container ">
+    <div class="row">
+      <div class="cards-product justify-content-center">
         <% @jobs.each do |job| %>
-          <li> <%= job.id %> "<%= link_to job.title, job_path(job) %>" : <%= job.user.first_name %> needs help on <%= job.due_date %> </li>
+
+          <div class="card-product col-12 mx-3 my-3 ">
+            <div class="card-product-info">
+              <h2><%= link_to job.title, job_path(job) %></h2>
+              <p>Help <%= job.user.first_name %> on <%= job.due_date.strftime("%A, %b %d") %></p>
+            </div>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
+
 </div>

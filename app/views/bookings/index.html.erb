@@ -14,8 +14,8 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> <%= booking.user.first_name %> wants to help you </div>
-            <%= link_to job_booking_path(booking.job.id, booking.id) do %>
-              <button class="btn btn-outline-secondary mb-2">Choose <%= booking.user.first_name %></button>
+             <%= link_to job_booking_path(booking.job.id, booking.id) do %>
+              <button class="btn btn-outline-secondary mb-2"> Booking details</button>
             <% end %>
           </div>
         </div>
@@ -86,8 +86,8 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> We are waiting for <%= booking.job.user.first_name %> to confirm  </div>
-            <%= link_to job_path(booking.job.id) do %>
-            <button class="btn btn-outline-secondary mb-2"> Job details</button>
+             <%= link_to job_booking_path(booking.job.id, booking.id) do %>
+             <button class="btn btn-outline-secondary mb-2"> Booking details</button>
             <% end %>
           </div>
         </div>
@@ -108,9 +108,6 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> <%= booking.job.user.first_name %> is waiting for you </div>
-            <%= link_to job_path(booking.job.id) do %>
-            <button class="btn btn-outline-secondary mb-2"> Job details</button>
-            <% end %>
            <%= link_to job_booking_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2"> Booking details</button>
             <% end %>

@@ -1,6 +1,7 @@
-class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+# frozen_string_literal: true
 
-  def home
-  end
+class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[home]
+
+  def home; end
 end

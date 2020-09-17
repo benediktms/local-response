@@ -1,2 +1,3 @@
-class CategoriesController < ApplicationController
-end
+# frozen_string_literal: true
+
+class CategoriesController < ApplicationController; end
