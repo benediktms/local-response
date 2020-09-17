@@ -68,7 +68,10 @@ class JobsController < ApplicationController
     test_array = []
     test_array << @job.user_id
     @job.bookings.each { |booking| test_array << booking.user.id }
-    return true unless test_array.include? current_user.id
+    if user_signed_in?
+      return true unless test_array.include? current_user.id
+    else
+    end
   end
   helper_method :filter_jobs?
 
