@@ -138,9 +138,9 @@
               <button class="btn btn-outline-secondary mb-2">Review <%= booking.job.user.first_name %></button>
             <% end %>
             <% if booking.invoices.attached? %>
-            <span>invoice uploaded</span>
+              <span>invoice uploaded</span>
             <% else %>
-            <%= link_to 'Upload a receipt', edit_booking_path(booking), class: "btn btn-outline-secondary mb-2" %>
+              <%= link_to 'Upload a receipt', edit_booking_path(booking), class: "btn btn-outline-secondary mb-2" %>
             <% end %>
 
 

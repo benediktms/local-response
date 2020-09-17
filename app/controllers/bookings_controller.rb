@@ -67,7 +67,6 @@ class BookingsController < ApplicationController
 
   def update
     set_booking
-    raise
     if @booking.update(booking_params)
     redirect_to bookings_path
     else
@@ -94,7 +93,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(invoice: [])
+    params.require(:booking).permit(invoices: [])
   end
 
   def set_booking

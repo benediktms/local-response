@@ -1,10 +1,7 @@
 <%= simple_form_for @booking do |f| %>
   <%= f.error_notification %>
-
-
-<%= f.input :invoice, as: :file %>
-
-<%= f.button :submit, class: "btn-primary" %>
+  <%= f.input :invoices, as: :file, input_html: { multiple: true } %>
+  <%= f.button :submit, class: "btn-primary" %>
 <% end %>
 
 <%= link_to 'Cancel', bookings_path, class: "btn-outline-secondary"  %>
