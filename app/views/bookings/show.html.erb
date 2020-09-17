@@ -36,6 +36,9 @@
     This booking has not been completed
     <% end %>
   </div>
+  <div class="row">
+    <%= render partial: "chatroom" %>
+  </div>
 
   <% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
   <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>
