@@ -137,11 +137,12 @@
             <%= link_to  new_job_booking_review_path(booking.job.id, booking.id) do %>
               <button class="btn btn-outline-secondary mb-2">Review <%= booking.job.user.first_name %></button>
             <% end %>
-            <% if booking.invoice.nil? %>
-              <%= link_to 'Upload a receipt', edit_booking_path(booking), class: "btn btn-outline-secondary mb-2" %>
-            <% else %>
+            <% if booking.invoices.attached? %>
             <span>invoice uploaded</span>
+            <% else %>
+            <%= link_to 'Upload a receipt', edit_booking_path(booking), class: "btn btn-outline-secondary mb-2" %>
             <% end %>
+
 
             <!-- <button class="btn btn-outline-secondary mb-2">Upload a receipt</button> -->
 
