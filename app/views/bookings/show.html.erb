@@ -13,6 +13,7 @@
         <div>
           <ul id="directions"></ul>
         </div>
+        <%= render partial: "chatroom" %>
       </div>
     </div>
 
@@ -22,25 +23,26 @@
     <% end %>
   </div>
 
-  <div class="row">
-    Booking details:
-    <br />
-    Booking id : <%= @booking.id %>
-    <br>
-    Volunteer : <%= @booking.user.first_name %>
-    <br>
-    Booking status :
-    <% if !@booking.confirmed %>
-      This booking has not been confirmed
-    <% elsif @booking.confirmed && !@booking.completed %>
-      This booking has been confirmed but not been completed
-    <% elsif @booking.completed %>
-      This booking has been completed
-    <% end %>
-  </div>
-  <div class="row">
-    <%= render partial: "chatroom" %>
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        Booking details:
+        <br>
+        Booking id : <%= @booking.id %>
+        <br>
+        Volunteer : <%= @booking.user.first_name %>
+        <br>
+        Booking status :
+        <% if !@booking.confirmed %>
+          This booking has not been confirmed
+        <% elsif @booking.confirmed && !@booking.completed %>
+          This booking has been confirmed but not been completed
+        <% elsif @booking.completed %>
+          This booking has been completed
+        <% end %>
+        </div>
+      </div>
+    </div>
 
   <% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
   <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>
