@@ -1,7 +1,14 @@
-<%= simple_form_for @booking do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :invoices, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 mx-auto form-login mb-5">
+    <h2>Upload receipt</h2>
+      <%= simple_form_for @booking do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :invoices, as: :file, input_html: { multiple: true } %>
+        <%= f.button :submit, class: "btn-primary" %>
+      <% end %>
 
-<%= link_to 'Cancel', bookings_path, class: "btn-outline-secondary"  %>
+      <%= link_to 'Cancel', bookings_path, class: "btn-outline-secondary"  %>
+    </div>
+  </div>
+</div>
