@@ -1,10 +1,9 @@
 <div class="container">
-  <h1>Details about your booking with <%= @booking.job.user.first_name %></h1>
-
-  <div class="row">
-    <div class="col col-md-8">
+  <h1 id="header">Details about your booking with <%= @booking.job.user.first_name %></h1>
+    <div class="row">
+      <div class="col col-md-8">
       <% if @booking.user == current_user %>
-      <div id="map" class="rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
+      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
       </div>
     </div>
     <div class="col col-md-4">
@@ -13,19 +12,20 @@
         <div>
           <ul id="directions"></ul>
         </div>
-        <%= render partial: "chatroom" %>
       </div>
     </div>
-
     <% else %>
     <div id="map" class="rounded shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
     <% end %>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
+
+    <div class="row pt-4">
+      <div class="col col-md-8">
+        <%= render partial: "chatroom" %>
+      </div>
+      <div class="col col-md-4 booking-details">
         Booking details:
         <br>
         Booking id : <%= @booking.id %>
@@ -42,7 +42,6 @@
         <% end %>
         </div>
       </div>
-    </div>
 
   <% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
   <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>

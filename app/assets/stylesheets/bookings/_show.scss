@@ -1,5 +1,32 @@
 #messages {
-  width: 300px;
+  width: 100%;
   height: 400px;
   overflow: scroll;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
+}
+.turn-by-turn {
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+}
+#map {
+  border-radius: 20px;
+}
+#header {
+  text-align: center;
+  padding: 5px;
+}
+.container-chat {
+  background-color: white;
+  border-radius: 20px;
+}
+.booking-details {
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
 }
