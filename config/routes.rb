@@ -14,5 +14,10 @@ Rails.application.routes.draw do
   resources :chatrooms, only: :show do
     resources :messages, only: :create
   end
+  get 'accessibility', to: 'pages#accessibility', as: :accessibility
+  get 'about', to: 'pages#about', as: :about
+  get 'privacy', to: 'pages#privacy', as: :privacy
+  get 'statement', to: 'pages#statement', as: :statement
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,12 +1,19 @@
-<div class="bg-dark text-white justify-content-center overflow-hidden sticky-bottom">
+<div class="light text-black justify-content-center overflow-hidden sticky-bottom">
 
   <div class="row">
     <div class="col">
       <p class="text-center pt-3">
-        Thank you for visiting
-        <a href="https://github.com/benediktms/local-response" class="text-reset text-monospace text-danger">Local Response</a>
-        . Made with <i class="fas fa-heart text-danger"></i> by Local Response @
-        <a href="https://www.lewagon.com/" class="text-reset text-monospace text-danger">Le Wagon</a>
+        <%= link_to "Home", root_path, class:"text-reset text-monospace text-danger" %>
+         | 
+        <%= link_to "About us", about_path, class:"text-reset text-monospace text-danger" %>
+         | 
+        <%= link_to "Privacy & Cookies", privacy_path, class:"text-reset text-monospace text-danger" %>
+         | 
+        <%= link_to "Accessibility", accessibility_path, class:"text-reset text-monospace text-danger" %>
+         | 
+        <%= link_to "Modern Slavery Statement", statement_path, class:"text-reset text-monospace text-danger" %>
+         |
+        © 2020
       </p>
     </div>
   </div>
