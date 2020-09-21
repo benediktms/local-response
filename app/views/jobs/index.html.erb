@@ -11,15 +11,22 @@
     </div>
   </div>
 
-<div class="row">
-    <%= link_to "All categories", jobs_path, class: "btn btn-outline-secondary" %>
-    <%= form_tag jobs_path, method: :get do %>
-    <%= collection_select(:job, :query, Category.all, :id, :name) %>
-    <%= submit_tag "Filter by category", class: "btn btn-outline-secondary" %>
-    <% end %>
-</div>
+  <div class="row my-3">
+    <div class="col col-sm-6 mx-auto">
+        <%= form_tag jobs_path, method: :get do %>
+        <%= collection_select(:job, :query, Category.all, :id, :name, html_options: { class: 'input-group mb-3' }) %>
+        <%= submit_tag "Filter by category", class: "btn btn-outline-primary" %>
+        <%= link_to "Reset filter", jobs_path, class: "btn btn-outline-danger" %>
+        <% end %>
 
- 
+      <%= simple_form_for :filter do |f| %>
+        <%= f.input :category, collection: Category.all %>
+        <%= f.submit "Filter", class: 'btn btn-primary' %>
+        <%= link_to "Reset filter", jobs_path, class: "btn btn-outline-danger" %>
+      <% end %>
+
+    </div>
+  </div>
 
   <div class="container ">
     <div class="row">
