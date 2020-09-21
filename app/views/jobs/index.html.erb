@@ -15,16 +15,9 @@
     <div class="col col-sm-6 mx-auto">
         <%= form_tag jobs_path, method: :get do %>
         <%= collection_select(:job, :query, Category.all, :id, :name, html_options: { class: 'input-group mb-3' }) %>
-        <%= submit_tag "Filter by category", class: "btn btn-outline-primary" %>
-        <%= link_to "Reset filter", jobs_path, class: "btn btn-outline-danger" %>
+        <%= submit_tag "Filter by category", class: "btn btn-outline-primary mt-2" %>
+        <%= link_to "Reset filter", jobs_path, class: "btn btn-outline-danger mt-2" %>
         <% end %>
-
-      <%= simple_form_for :filter do |f| %>
-        <%= f.input :category, collection: Category.all %>
-        <%= f.submit "Filter", class: 'btn btn-primary' %>
-        <%= link_to "Reset filter", jobs_path, class: "btn btn-outline-danger" %>
-      <% end %>
-
     </div>
   </div>
 
