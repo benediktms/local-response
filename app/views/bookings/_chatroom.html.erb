@@ -1,5 +1,5 @@
 <div class="container-">
-<p><%= @chatroom.name %></p>
+<!-- <p><%= @chatroom.name %></p> -->
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
   <% @chatroom.messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">
