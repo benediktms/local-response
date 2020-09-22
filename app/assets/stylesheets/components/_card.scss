@@ -23,3 +23,9 @@
 .card-product-category {
   font-size: 40px;
 }
+
+.cards-product-team {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 60px;
+}
