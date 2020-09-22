@@ -8,4 +8,3 @@ production:
   adapter: redis
   url: <%= ENV.fetch("REDISCLOUD_URL") { "redis://localhost:6379/1" } %>
   channel_prefix: slack_clone_production
-heroku addons:create rediscloud:30
