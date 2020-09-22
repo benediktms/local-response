@@ -1,15 +1,14 @@
 <div class="container">
 
-<div>
-  <p>Map will go here</p>
-</div>
+      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
 
 
 <div class="row">
   <h3> Job details </h3>
 </div>
 
-<div class="row"> 
+<div class="row">
   <div> Job id : <%= @job.id %>
     <br>
     <%= @job.user.first_name %> needs help on <%= @job.due_date %>
@@ -33,12 +32,12 @@
      </div>
    <% end %>
   </div>
- 
+
  <div class="row">
    <% if filter_jobs? == true %>
    <%= link_to "Volunteer for this job", job_quick_create_path(@job), method:'post', class: "btn btn-outline-secondary mb-2" %>
    <% else %>
-   <% end %>  
+   <% end %>
 </div>
 
 <%= link_to "Back to list of jobs", jobs_path, class: "btn btn-outline-secondary mb-2" %>
