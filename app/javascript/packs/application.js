@@ -24,11 +24,10 @@ require('channels');
 import 'bootstrap';
 import { initMapbox } from '../plugins/mapbox/init';
 import { initChatroomCable } from '../channels/chatroom_channel';
-// import { clearText, message } from '../plugins/chat/clearText';
-
-// message.addEventListener('submit', clearText);
+import { filterStyling } from '../plugins/styling/filter_styling';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initChatroomCable();
+  filterStyling();
 });
