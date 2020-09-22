@@ -24,9 +24,9 @@ require('channels');
 import 'bootstrap';
 import { initMapbox } from '../plugins/mapbox/init';
 import { initChatroomCable } from '../channels/chatroom_channel';
-import { clearText, message } from '../plugins/chat/clearText';
+// import { clearText, message } from '../plugins/chat/clearText';
 
-message.addEventListener('submit', clearText);
+// message.addEventListener('submit', clearText);
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
