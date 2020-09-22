@@ -24,7 +24,9 @@ require('channels');
 import 'bootstrap';
 import { initMapbox } from '../plugins/mapbox/init';
 import { initChatroomCable } from '../channels/chatroom_channel';
+
 import { filterStyling } from '../plugins/styling/filter_styling';
+
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();

@@ -58,9 +58,6 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> <%= booking.user.first_name %> has marked the job as complete </div>
-            <%= link_to new_job_booking_review_path(booking.job.id, booking.id) do %>
-              <button class="btn btn-outline-secondary mb-2">Review <%= booking.user.first_name %> </button>
-            <% end %>
             <button class="btn btn-outline-secondary mb-2">Upload a receipt</button>
           </div>
         </div>
@@ -131,9 +128,6 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title"> Thank you for helping <%= booking.job.user.first_name %>  !! </div>
-            <%= link_to  new_job_booking_review_path(booking.job.id, booking.id) do %>
-              <button class="btn btn-outline-secondary mb-2">Review <%= booking.job.user.first_name %></button>
-            <% end %>
             <% if booking.invoices.attached? %>
               <span>invoice uploaded</span>
             <% else %>
