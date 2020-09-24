@@ -1,5 +1,15 @@
 <% if !current_user.bookings.any? %>
-  <p>Nothing here yet!</p>
+  <div class="bookings-index">
+    <div class="container">
+      <div class="row p-5 justify-content-center flex-column align-items-center">
+        <%= image_tag 'void.png', class: 'w-50 mb-5' %>
+        <h3 class="mb-4 text-secondary">You haven't volunteered for anything yet</h3>
+        <%= link_to jobs_path do %>
+          <buttton class="btn btn-primary">Volunteer now</buttton>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <% # This code section relates to the person shielding who has posted jobs %>
