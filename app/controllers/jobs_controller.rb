@@ -24,7 +24,10 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  def show; end
+  def show
+    @markers = []
+    @markers << { lat: @job.latitude, long: @job.longitude }
+  end
 
   def create
     @job = Job.new(job_params)
@@ -71,6 +74,7 @@ class JobsController < ApplicationController
     if user_signed_in?
       return true unless test_array.include? current_user.id
     else
+
     end
   end
   helper_method :filter_jobs?
@@ -89,5 +93,4 @@ class JobsController < ApplicationController
         @jobs_selection
       end
   end
-
 end
