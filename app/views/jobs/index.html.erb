@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1>Job details</h1>
+    <h1 class="my-3 text-center mx-auto">Find a Job in your area</h1>
   </div>
   <div class="row">
     <div id="map"
@@ -11,25 +11,54 @@
     </div>
   </div>
 
-<div class="row">
-    <%= link_to "All categories", jobs_path, class: "btn btn-outline-secondary" %>
-    <%= form_tag jobs_path, method: :get do %>
-    <%= collection_select(:job, :query, Category.all, :id, :name) %>
-    <%= submit_tag "Filter by category", class: "btn btn-outline-secondary" %>
-    <% end %>
-</div>
+  <div class="row my-3 my-5">
+    <div class="col col-sm-6 mx-auto">
+        <%= form_tag jobs_path, method: :get do %>
+        <div class="row">
+          <div class="col">
+            <%= collection_select(:job, :query, Category.all, :id, :name, html_options: { class: 'input-group mb-3' }) %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <%= submit_tag "Filter by category", class: "btn btn-outline-primary" %>
+            <%= link_to "Reset filter", jobs_path, class: "btn btn-outline-danger" %>
+          </div>
+        </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
 
- 
-
-  <div class="container ">
+  <div class="container mb-5">
     <div class="row">
       <div class="cards-product justify-content-center">
         <% @jobs.each do |job| %>
 
-          <div class="card-product col-12 mx-3 my-3 ">
-            <div class="card-product-info">
-              <h2><%= link_to job.title, job_path(job) %></h2>
-              <p>Help <%= job.user.first_name %> on <%= job.due_date.strftime("%A, %b %d") %></p>
+          <div class="card-product p-3 shadow rounded">
+            <div class="mx-auto p-3 d-flex flex-column justify-content-between">
+              <div class="row my-3">
+                <% if job.category.name == 'Groceries' %>
+                   <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
+                <% elsif job.category.name == 'Medicine' %>
+                  <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
+                <% else %>
+                  <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <h4 class="ml-3"><%= link_to job.title, job_path(job) %></h4>
+                </div>
+              </div>
+              <div class="row mt-3 mx-3">
+                <p><%= job.user.first_name %> needs help with <%= job.category.name %> on <%= job.due_date.strftime("%A, %b %d") %>. Click below to help out!</p>
+              </div>
+              <div class="row ml-3">
+                <%= link_to job_path(job) do %>
+                  <button class="btn btn-outline-primary">Volunteer for this job</button>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>
