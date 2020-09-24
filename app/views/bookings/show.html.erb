@@ -1,13 +1,13 @@
 <div class="container">
   <h1 id="header">Details about your booking with <%= @booking.job.user.first_name %></h1>
     <div class="row">
-      <div class="col col-md-8">
+      <div class="col col-md-8 rounded shadow">
       <% if @booking.user == current_user %>
       <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
       </div>
     </div>
     <div class="col col-md-4">
-      <div class="turn-by-turn">
+      <div class="turn-by-turn rounded shadow">
         <div id="estimation"></div>
         <div>
           <ul id="directions"></ul>
@@ -25,20 +25,18 @@
       <div class="col col-md-8">
         <%= render partial: "chatroom" %>
       </div>
-      <div class="col col-md-4 booking-details">
-        Booking details:
-        <br>
-        Booking id : <%= @booking.id %>
-        <br>
-        Volunteer : <%= @booking.user.first_name %>
-        <br>
-        Booking status :
-        <% if !@booking.confirmed %>
-          This booking has not been confirmed
+      <div class="col col-md-4 booking-details rounded shadow">
+        <h3>Booking details:</h3>
+        <p>Booking id : <%= @booking.id %></p>
+        <p>Volunteer : <%= @booking.user.first_name %></p>
+
+        <p>Booking status :
+        <p><% if !@booking.confirmed %></p>
+         <p>This booking has not been confirmed</p>
         <% elsif @booking.confirmed && !@booking.completed %>
-          This booking has been confirmed but not been completed
+          <p>This booking has been confirmed but not been completed</p>
         <% elsif @booking.completed %>
-          This booking has been completed
+          This booking has been completed</p>
         <% end %>
         </div>
       </div>
@@ -54,6 +52,7 @@
 
   <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
+  <div class="container">
   <% if current_user.id == @booking.user_id && @booking.confirmed && !@booking.completed %>
     <div class="row">
       <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
@@ -61,11 +60,10 @@
         I have completed this job
       </button>
       <% end %>
-    </div>
   <% end %>
 
-  <div class="container">
-    <%= link_to "Back to bookings", bookings_path(@bookings), method:'get', class: "btn btn-outline-secondary mb-2" %>
+    <%= link_to "Back to bookings", bookings_path(@bookings), method:'get', class: "btn btn-outline-secondary mb-2 ml-2" %>
     <%# <%= link_to "Review your job", new_job_booking_review_path, class: "btn btn-outline-secondary mb-2" %>
+    </div>
   </div>
 </div>

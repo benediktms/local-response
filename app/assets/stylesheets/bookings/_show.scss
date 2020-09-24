@@ -4,7 +4,8 @@
   overflow: scroll;
   padding: 15px;
   background-color: white;
-  border-radius: 20px;
+  // border-radius: 10px;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 .turn-by-turn {
   width: 100%;
@@ -15,7 +16,7 @@
   padding: 15px;
 }
 #map {
-  border-radius: 20px;
+  // border-radius: 20px;
 }
 #header {
   text-align: center;
@@ -29,4 +30,5 @@
   padding: 15px;
   background-color: white;
   border-radius: 20px;
+  height: 400px;
 }
