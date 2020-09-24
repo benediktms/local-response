@@ -1,4 +1,6 @@
-<%# <div class="container mb-5"> %>
+<% if !current_user.bookings.any? %>
+  <p>Nothing here yet!</p>
+<% end %>
 
 <% # This code section relates to the person shielding who has posted jobs %>
 
