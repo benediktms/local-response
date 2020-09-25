@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 id="header">Details about your booking with <%= @booking.job.user.first_name %></h1>
+  <h1 id="header" class="my-5">Details about your booking with <%= @booking.job.user.first_name %></h1>
     <div class="row">
       <div class="col col-md-8">
       <% if @booking.user == current_user %>
@@ -10,7 +10,7 @@
       <div class="turn-by-turn">
         <div id="estimation"></div>
         <div>
-          <ul id="directions"></ul>
+          <ul id="directions" class="text-secondary"></ul>
         </div>
       </div>
     </div>
@@ -20,23 +20,42 @@
     <% end %>
   </div>
 
-
     <div class="row pt-4">
       <div class="col col-md-8">
         <%= render partial: "chatroom" %>
       </div>
-      <div class="col col-md-4 booking-details">
+      <div class="col col-md-4 booking-details text-secondary">
         <h3>Booking details:</h3>
-        <p>Booking id : <%= @booking.id %></p>
-        <p>Volunteer : <%= @booking.user.first_name %></p>
-        <p>Booking status :
-        <p><% if !@booking.confirmed %></p>
-         <p>This booking has not been confirmed</p>
-        <% elsif @booking.confirmed && !@booking.completed %>
-          <p>This booking has been confirmed but not been completed</p>
-        <% elsif @booking.completed %>
-          This booking has been completed</p>
-        <% end %>
+        <p>Booking ID: <%= @booking.id %></p>
+        <div class="my-3 d-flex">
+          <div>
+          <% if @booking.job.user.photo %>
+            <%= image_tag @booking.job.user.photo, class: 'avatar mr-3' %>
+          <% else %>
+            <img
+                class="avatar-large mr-3"
+                src="https://avatars.abstractapi.com/v1/?api_key=6fc0780e90b04e089c32be386f5e0e24&name=<%= @booking.job.user.first_name %>+<%= @booking.job.user.last_name %>"
+            />
+          <% end %>
+          </div>
+          <div>
+            <p>Created <%= time_ago_in_words(@booking.job.created_at) %> ago </br>by <%= @booking.job.user.first_name %>.</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <h5>Description:</h5>
+          <p><%= @booking.job.description %></p>
+        </div>
+        <div>
+          <h5>Status:</h5>
+          <p><% if !@booking.confirmed %></p>
+          <p>This booking has not been confirmed</p>
+          <% elsif @booking.confirmed && !@booking.completed %>
+            <p>This booking has been confirmed but not been completed</p>
+          <% elsif @booking.completed %>
+            This booking has been completed</p>
+          <% end %>
+        </div>
         <% if current_user.id == @booking.job.user_id && !@booking.confirmed %>
         <div class="row">
           <%= link_to confirm_booking_path(@booking), method: 'PATCH' do %>
