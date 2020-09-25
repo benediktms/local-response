@@ -1,17 +1,21 @@
 <div class="container-chat">
 <!-- <p><%= @chatroom.name %></p> -->
-<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-  <% @chatroom.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
-      <i class="author">
-         <span><%= message.user.nickname %></span>
-         <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-      <p><%= message.content %></p>
-      </div>
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+    <% @chatroom.messages.each do |message| %>
+      <div class="message-container" id="message-<%= message.id %>">
+        <i class="author">
+          <span><%= message.user.nickname %></span>
+          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        </i>
+        <p><%= message.content %></p>
+        </div>
+    <% end %>
+  </div>
+  <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+    <% if current_user.id == @chatroom.booking.job.user_id %>
+      <%= f.input :content, label: false, placeholder: "Message #{@chatroom.booking.user.first_name}" %>
+    <% elsif current_user.id == @chatroom.booking.user_id %>
+      <%= f.input :content, label: false, placeholder: "Message #{@chatroom.booking.job.user.first_name}" %>
+    <% end %>
   <% end %>
-</div>
-<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}", id:"chat-message"%>
-<% end %>
 </div>
