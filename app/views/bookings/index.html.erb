@@ -177,7 +177,7 @@
     </div>
   </div>
 
-<% if @requested_bookings.any? %>
+<% if any_requested_booking_not_confirmed? %>
   <div class="bookings-index">
     <div class="container">
       <div class="row p-5 mb-5">
@@ -229,6 +229,7 @@
 <% # Bookings confirmed not completed : These are the bookings confirmed by shielders and that the volunteer must complete %>
 
 <% if any_requested_booking_confirmed_not_completed? %>
+
   <div class="bookings-index">
     <div class="container">
       <div class="row p-5 mb-5 d-flex align-items-center">
@@ -244,6 +245,7 @@
           <% @requested_bookings.each do |booking| %>
             <% if booking.confirmed && !booking.completed %>
               <div class="card-product p-3 shadow">
+                
                 <div class="mx-auto p-3 d-flex flex-column justify-content-between">
                   <div class="row my-3">
                     <% if booking.job.category.name == 'Groceries' %>

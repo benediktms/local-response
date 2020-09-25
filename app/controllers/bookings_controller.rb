@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   before_action :any_received_booking_not_confirmed_and_not_declined?
   before_action :any_received_booking_confirmed_not_completed?
   before_action :any_received_booking_completed?
+  before_action :any_requested_booking_not_confirmed?
   before_action :any_requested_booking_confirmed_not_completed?
   before_action :any_requested_booking_completed?
 
@@ -144,6 +145,17 @@ class BookingsController < ApplicationController
     true if count.positive?
   end
   helper_method :any_received_booking_completed?
+
+  # this method will return true if there is at least one requested_booking not confirmed
+  def any_requested_booking_not_confirmed?
+    count = 0
+    index
+    @requested_bookings.each do |booking|
+      count += 1 if !booking.confirmed
+    end
+    true if count.positive?
+  end
+  helper_method :any_requested_booking_not_confirmed?
 
   # this method will return true if there is at least one requested_booking confirmed and not completed
   def any_requested_booking_confirmed_not_completed?
