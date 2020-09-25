@@ -2,3 +2,18 @@
   background-color: white;
   padding: 0 64px 64px;
 }
+
+.awaiting-confirmation {
+  background-color: #f8edeb;
+  border-radius: 20px;
+}
+
+.confirmed {
+  background-color: #e8f3f7;
+  border-radius: 20px;
+}
+
+.completed {
+  background-color: #e8ffe4;
+  border-radius: 20px;
+}

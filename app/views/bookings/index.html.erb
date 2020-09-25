@@ -183,7 +183,7 @@
           <%= image_tag 'waiting_listening.png', class: 'w-100' %>
         </div>
       </div>
-      <div class="row">
+      <div class="row awaiting-confirmation p-5">
         <div class="cards-product justify-content-center">
           <% @requested_bookings.each do |booking| %>
             <% if !booking.confirmed %>
@@ -234,7 +234,7 @@
           <h3 class="text-secondary">Here are the jobs that have been confirmed. You can start working on these!</h3>
         </div>
       </div>
-      <div class="row">
+      <div class="row confirmed p-5">
         <div class="cards-product justify-content-center">
           <% @requested_bookings.each do |booking| %>
             <% if booking.confirmed && !booking.completed %>
@@ -282,7 +282,7 @@
           <h3 class="text-secondary text-center">Here are the jobs you've already completed! </br> Well done and thansk for supporting your community!</h3>
       </div>
 
-      <div class="row">
+      <div class="row completed p-5">
         <div class="cards-product justify-content-center">
           <% @requested_bookings.each do |booking| %>
             <% if booking.completed %>
