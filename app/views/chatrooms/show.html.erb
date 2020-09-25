@@ -14,5 +14,9 @@
 </div>
 
 <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+  <% if current_user.id == @chatroom.booking.job.user_id %>
+    <%= f.input :content, label: false, placeholder: "Message #{@chatroom.booking.user.first_name}" %>
+  <% elsif current_user.id == @chatroom.booking.user_id %>
+    <%= f.input :content, label: false, placeholder: "Message #{@chatroom.booking.job.user.first_name}" %>
+  <% end %>
 <% end %>

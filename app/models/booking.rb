@@ -6,5 +6,5 @@ class Booking < ApplicationRecord
   belongs_to :job
   has_many :reviews
   has_many_attached :invoices
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
 end
