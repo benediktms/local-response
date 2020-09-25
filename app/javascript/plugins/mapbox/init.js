@@ -44,5 +44,17 @@ export const initMapbox = () => {
         })
       );
     }
+    map.on('wheel', (event) => {
+      if (event.originalEvent.ctrlKey) {
+        return;
+      }
+      if (event.originalEvent.metaKey) {
+        return;
+      }
+      if (event.originalEvent.altKey) {
+        return;
+      }
+      event.preventDefault();
+    });
   }
 };
