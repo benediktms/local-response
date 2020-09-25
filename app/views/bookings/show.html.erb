@@ -6,7 +6,7 @@
       <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
       </div>
     </div>
-    <div class="col col-md-4">
+    <div class="col col-md-4 relative">
       <div class="turn-by-turn p-4">
         <div id="estimation"></div>
         <div>
@@ -34,7 +34,7 @@
           <% else %>
             <img
                 class="avatar-large mr-3"
-                src="https://avatars.abstractapi.com/v1/?api_key=6fc0780e90b04e089c32be386f5e0e24&name=<%= @booking.job.user.first_name %>+<%= @booking.job.user.last_name %>"
+                src="https://avatars.abstractapi.com/v1/?api_key=<%= ENV['ABSTRACT_API_KEY'] %>&name=<%= @booking.job.user.first_name %>+<%= @booking.job.user.last_name %>"
             />
           <% end %>
           </div>

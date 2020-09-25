@@ -26,8 +26,8 @@
       <div>
         <% if filter_jobs? == true %>
           <%= link_to "Volunteer for this job", job_quick_create_path(@job), method:'post', class: "btn btn-primary mr-1" %>
-          <%= link_to "Back to list of jobs", jobs_path, class: "btn btn-outline-secondary" %>
         <% end %>
+        <%= link_to "Back to list of jobs", jobs_path, class: "btn btn-outline-secondary" %>
       </div>
     </div>
     <div class="col">

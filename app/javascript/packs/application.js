@@ -31,3 +31,13 @@ document.addEventListener('turbolinks:load', () => {
   initChatroomCable();
   filterStyling();
 });
+
+const ele = document.getElementById('message_content');
+
+if (ele) {
+  ele.addEventListener('keyup', (e) => {
+    if (e.key == 'Enter') {
+      ele.value = '';
+    }
+  });
+}
