@@ -1,6 +1,6 @@
-<div class="container-">
+<div class="container-chat">
 <!-- <p><%= @chatroom.name %></p> -->
-<div id="messages" class="rounded shadow" data-chatroom-id="<%= @chatroom.id %>">
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
   <% @chatroom.messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">
       <i class="author">
@@ -12,6 +12,6 @@
   <% end %>
 </div>
 <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}", id:'chat-message'%>
+  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}", id:"chat-message"%>
 <% end %>
 </div>
