@@ -1,2 +1,20 @@
-<h2><%= job.title %></h2>
-<p><%= job.address %></p>
+<div class="container">
+  <div class="d-flex align-items-center p-2">
+    <% if job.user.photo %>
+      <%= image_tag job.user.photo, class: 'avatar mr-3' %>
+    <% else %>
+      <img
+          class="avatar-large mr-3"
+          src="https://avatars.abstractapi.com/v1/?api_key=6fc0780e90b04e089c32be386f5e0e24&name=<%= job.user.first_name.strip %>+<%= job.user.last_name.strip %>"
+      />
+    <% end %>
+    <p class="text-left">Created <%= time_ago_in_words(job.created_at) %> ago by <%= job.user.first_name %>.</p>
+  </div>
+
+  <div class="text-left">
+    <p><%= job.user.first_name %> needs help with <strong><%= job.category.name %></strong> on <%= job.due_date.strftime("%A, %b %d") %>.</p>
+    <%= link_to job_path(job) do %>
+      <button class="btn btn-outline-primary">Volunteer for this job</button>
+    <% end %>
+  </div>
+</div>

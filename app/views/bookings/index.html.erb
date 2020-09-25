@@ -1,50 +1,67 @@
-<div class="container mb-5">
+<% if !current_user.bookings.any? %>
+  <div class="bookings-index">
+    <div class="container">
+      <div class="row p-5 justify-content-center flex-column align-items-center">
+        <%= image_tag 'void.png', class: 'w-50 mb-5' %>
+        <h3 class="mb-4 text-secondary">You haven't volunteered for anything yet</h3>
+        <%= link_to jobs_path do %>
+          <buttton class="btn btn-primary">Volunteer now</buttton>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <% # This code section relates to the person shielding who has posted jobs %>
 
 <% # Bookings not confirmed and not declined : These are the jobs for which the shielder has received bookings and that he/she should confirm %>
 
 <% if any_received_booking_not_confirmed_and_not_declined? %>
-    <div class="row col-sm-12 justify-content-center">
-    <h3> <%= current_user.first_name %>, can you confirm one of these offers from our volunteers to help you ?</h3>
+  <div class="awaiting-confirmation">
+    <div class="row p-5">
+      <div class="col mb-5">
+        <h3 class="text-secondary">Hi, <%= current_user.first_name %>!</h3>
+        <h3 class="text-secondary">Some of your jobs have pending requests.</h3>
+      </div>
+      <div class="col">
+        <%= image_tag 'bookings_index.png' %>
+      </div>
     </div>
 
-    <div class="container mb-5">
-        <div class="row">
-
-            <div class="cards-product justify-content-center">    
-            <% @received_bookings.each do |booking| %>
-              <% if !booking.confirmed && !booking.declined %>
-              <div class="card-product p-3 shadow rounded">         
-                <div class="mx-auto p-3 d-flex flex-column justify-content-between">
-                  <div class="row my-3">
-                    <% if booking.job.category.name == 'Groceries' %>
-                      <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
-                    <% elsif booking.job.category.name == 'Medicine' %>
-                      <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
-                    <% else %>
-                      <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
-                    <% end %>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <h4 class="ml-3"></h4>
-                    </div>
-                  </div>                 
-                  <div class="row mt-3 mx-3">
-                    <p><%= booking.user.first_name %> wants to help you </p>
-                  </div>
-                  <div class="row ml-3">
-                   <%= link_to job_booking_path(booking.job.id, booking.id) do %>
-                  <button class="btn btn-outline-primary"> Booking details</button>
-                     <% end %>
+    <div class="row">
+      <div class="cards-product justify-content-center">
+        <% @received_bookings.each do |booking| %>
+          <% if !booking.confirmed && !booking.declined %>
+            <div class="card-product p-3 shadow">
+              <div class="mx-auto p-3 d-flex flex-column justify-content-between">
+                <div class="row my-3">
+                  <% if booking.job.category.name == 'Groceries' %>
+                    <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
+                  <% elsif booking.job.category.name == 'Medicine' %>
+                    <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
+                  <% else %>
+                    <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
+                  <% end %>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <h4 class="ml-3"></h4>
                   </div>
                 </div>
+                <div class="row mt-3 mx-3">
+                  <p><%= booking.user.first_name %> wants to help you </p>
+                </div>
+                <div class="row ml-3">
+                  <%= link_to job_booking_path(booking.job.id, booking.id) do %>
+                    <button class="btn btn-outline-primary"> Booking details</button>
+                  <% end %>
+                </div>
               </div>
-              <% end %>
-            <% end %>
             </div>
-
+          <% end %>
+        <% end %>
+      </div>
+    </div>
     </div>
   </div>
 <%end%>
@@ -55,10 +72,10 @@
     <div class="row col-sm-12 justify-content-center">
     <h3> <%= current_user.first_name %>, volunteers are coming to help you </h3>
     </div>
-  
+
     <div class="container mb-5">
         <div class="row">
-      
+
           <div class="cards-product justify-content-center">
           <% @received_bookings.each do |booking| %>
           <% if booking.confirmed && !booking.completed %>
@@ -102,7 +119,7 @@
   <div class="row col-sm-12 justify-content-center">
     <h3> <%= current_user.first_name %>, these jobs have been completed by our volunteers </h3>
   </div>
-   
+
   <div class="container mb-5">
       <div class="row">
 
@@ -141,9 +158,9 @@
                 </div>
               </div>
           <% end %>
-        <% end %> 
+        <% end %>
       </div>
-    
+
     </div>
   </div>
 <%end%>
@@ -152,26 +169,38 @@
 
 <% # Bookings not confirmed and not declined : These are the jobs that the volunteer has booked and are awaiting confirmation %>
 
-<% if @requested_bookings.any? %>
-  <div class="row col-sm-12 justify-content-center">
-    <h3> <%= current_user.first_name %>, your offers to volunteer are awaiting confirmation </h3>
+  <div class="bookings-index">
+    <div class="container">
+      <div class="row p-5 justify-content-center">
+        <h1 class="text-secondary">Hi, <%= current_user.first_name %>!</h1>
+      </div>
+    </div>
   </div>
 
-  <div class="container mb-5">
-    <div class="row">
-
-      <div class="cards-product justify-content-center">    
-        <% @requested_bookings.each do |booking| %>  
-          <% if !booking.confirmed %>
-            <div class="card-product p-3 shadow rounded">
+<% if @requested_bookings.any? %>
+  <div class="bookings-index">
+    <div class="container">
+      <div class="row p-5 mb-5">
+        <div class="col">
+          <h3 class="text-secondary w-75"> Here are the jobs still awaiting confirmation</h3>
+        </div>
+        <div class="col">
+          <%= image_tag 'waiting_listening.png', class: 'w-100' %>
+        </div>
+      </div>
+      <div class="row awaiting-confirmation p-5">
+        <div class="cards-product justify-content-center">
+          <% @requested_bookings.each do |booking| %>
+            <% if !booking.confirmed %>
+              <div class="card-product p-3 shadow">
                 <div class="mx-auto p-3 d-flex flex-column justify-content-between">
                   <div class="row my-3">
                     <% if booking.job.category.name == 'Groceries' %>
-                      <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
+                      <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto groceries"></i>
                     <% elsif booking.job.category.name == 'Medicine' %>
-                      <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
+                      <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto medical"></i>
                     <% else %>
-                      <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
+                      <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto other"></i>
                     <% end %>
                   </div>
                   <div class="row">
@@ -180,19 +209,19 @@
                     </div>
                   </div>
                   <div class="row mt-3 mx-3">
-                    <p><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>. Click below to see details</p>
+                    <p class="text-secondary"><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>.</p>
                   </div>
                   <div class="row ml-3">
-                    <%= link_to job_booking_path(booking.job.id, booking.id)  do %>
-                      <button class="btn btn-outline-primary">Booking details</button>
+                    <%= link_to job_booking_path(booking.job.id, booking.id) do %>
+                      <button class="btn btn-outline-primary">Details</button>
                     <% end %>
                   </div>
                 </div>
               </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-
     </div>
   </div>
 <%end%>
@@ -200,25 +229,29 @@
 <% # Bookings confirmed not completed : These are the bookings confirmed by shielders and that the volunteer must complete %>
 
 <% if any_requested_booking_confirmed_not_completed? %>
-  <div class="row col-sm-12 justify-content-center">
-    <h3> <%= current_user.first_name %>, your offers to volunteer are awaiting confirmation </h3>
-  </div>
-
-  <div class="container mb-5">
-    <div class="row">
-  
-      <div class="cards-product justify-content-center">   
-      <% @requested_bookings.each do |booking| %>
-      <% if booking.confirmed && !booking.completed %>
-        <div class="card-product p-3 shadow rounded">
+  <div class="bookings-index">
+    <div class="container">
+      <div class="row p-5 mb-5 d-flex align-items-center">
+        <div class="col">
+          <%= image_tag 'checking_tasks.png', class: 'w-100' %>
+        </div>
+        <div class="col">
+          <h3 class="text-secondary">Here are the jobs that have been confirmed. You can start working on these!</h3>
+        </div>
+      </div>
+      <div class="row confirmed p-5">
+        <div class="cards-product justify-content-center">
+          <% @requested_bookings.each do |booking| %>
+            <% if booking.confirmed && !booking.completed %>
+              <div class="card-product p-3 shadow">
                 <div class="mx-auto p-3 d-flex flex-column justify-content-between">
                   <div class="row my-3">
                     <% if booking.job.category.name == 'Groceries' %>
-                      <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
+                      <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto groceries"></i>
                     <% elsif booking.job.category.name == 'Medicine' %>
-                      <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
+                      <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto medical"></i>
                     <% else %>
-                      <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
+                      <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto other"></i>
                     <% end %>
                   </div>
                   <div class="row">
@@ -227,19 +260,19 @@
                     </div>
                   </div>
                   <div class="row mt-3 mx-3">
-                    <p><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>. Click below to see details</p>
+                    <p class="text-secondary"><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>.</p>
                   </div>
                   <div class="row ml-3">
-                    <%= link_to job_booking_path(booking.job.id, booking.id)  do %>
-                      <button class="btn btn-outline-primary">Booking details</button>
+                    <%= link_to job_booking_path(booking.job.id, booking.id) do %>
+                      <button class="btn btn-outline-primary">Details</button>
                     <% end %>
                   </div>
                 </div>
               </div>
+            <% end %>
           <% end %>
-        <% end %>  
+        </div>
       </div>
-
     </div>
   </div>
 <%end%>
@@ -247,53 +280,52 @@
 <% # Bookings completed : These are the bookings completed by the volunteer %>
 
 <% if any_requested_booking_completed? %>
-    <div class="row col-sm-12 justify-content-center">
-    <h3> <%= current_user.first_name %>, thank you for helping !! </h3>
-  </div>
-
-   <div class="container mb-5">
-    <div class="row">
-      
-      <div class="cards-product justify-content-center">
-      <% @requested_bookings.each do |booking| %>
-      <% if booking.completed %>  
-          <div class="card-product p-3 shadow rounded">
-              <div class="mx-auto p-3 d-flex flex-column justify-content-between">
-                <div class="row my-3">
-                  <% if booking.job.category.name == 'Groceries' %>
-                    <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
-                  <% elsif booking.job.category.name == 'Medicine' %>
-                    <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
-                  <% else %>
-                    <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
-                  <% end %>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <h4 class="ml-3"></h4>
-                  </div>
-                </div>
-                <div class="row mt-3 mx-3">
-                  <p>Thank you for helping <%= booking.job.user.first_name %> !! </p>
-                </div>
-                <div class="row ml-3">
-                  <% if booking.invoices.attached? %>
-                    <span>invoice uploaded</span>
-                  <% else %>
-                    <%# <%= link_to 'Upload a receipt', edit_booking_path(booking), class: "btn btn-outline-primary" %>
-                    <%= link_to edit_booking_path(booking) do %>
-                    <button class="btn btn-outline-primary">Upload a receipt</button>
-                      <% end %>
-                  <% end %>
-                  </div>
-                </div>
-              </div>    
-          <% end %>
-        <% end %>
+  <div class="bookings-index">
+    <div class="container">
+      <div class="row p-5 d-flex justify-content-center">
+          <%= image_tag 'positive_attitude.png', class: 'w-100' %>
+          <h3 class="text-secondary text-center">Here are the jobs you've already completed! </br> Well done and thansk for supporting your community!</h3>
       </div>
-      
+
+      <div class="row completed p-5">
+        <div class="cards-product justify-content-center">
+          <% @requested_bookings.each do |booking| %>
+            <% if booking.completed %>
+              <div class="card-product p-3 shadow">
+                <div class="mx-auto p-3 d-flex flex-column justify-content-between">
+                  <div class="row my-3">
+                    <% if booking.job.category.name == 'Groceries' %>
+                      <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto groceries"></i>
+                    <% elsif booking.job.category.name == 'Medicine' %>
+                      <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto medical"></i>
+                    <% else %>
+                      <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto other"></i>
+                    <% end %>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h4 class="ml-3"></h4>
+                    </div>
+                  </div>
+                  <div class="row mt-3 mx-3">
+                    <p class="text-secondary">Thank you for helping <%= booking.job.user.first_name %>!</p>
+                  </div>
+                  <div class="row ml-3">
+                    <% if booking.invoices.attached? %>
+                      <p>invoice uploaded</p>
+                    <% else %>
+                      <%= link_to edit_booking_path(booking) do %>
+                      <button class="btn btn-outline-primary">Upload a receipt</button>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 <%end%>
 
-</div>
