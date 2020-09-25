@@ -25,6 +25,7 @@
         <%= render partial: "chatroom" %>
       </div>
       <div class="col col-md-4 text-secondary">
+        <div class="booking-details">
         <h3>Booking details:</h3>
         <p>Booking ID: <%= @booking.id %></p>
         <div class="my-3 d-flex align-items-center">
@@ -65,12 +66,13 @@
         <% end %>
         </div>
       </div>
+    </div>
 
   <% # if booking is accessed by shielder : if the booking has no been confirmed, shielder can confirm %>
 
   <% # if booking is accessed by volunteer : if the job has been completed, volunteer can mark as complete %>
 
-  <div class="row">
+  <div class="row ml-1">
     <% if current_user.id == @booking.user_id && @booking.confirmed && !@booking.completed %>
       <%# <div class="row"> %>
         <%= link_to complete_booking_path(@booking), method: 'PATCH' do %>
