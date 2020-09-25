@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col col-md-8 rounded shadow">
       <% if @booking.user == current_user %>
-      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
+      <div id="map" class="shadow" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" data-route="true">
       </div>
     </div>
     <div class="col col-md-4">
