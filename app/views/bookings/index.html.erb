@@ -39,6 +39,8 @@
                     <i class="fas fa-shopping-basket card-product-category mb-3 text-center mx-auto"></i>
                   <% elsif booking.job.category.name == 'Medicine' %>
                     <i class="fas fa-briefcase-medical card-product-category mb-3 text-center mx-auto"></i>
+                  <% elsif job.category.name == 'Chores' %>
+                    <i class="fas fa-tshirt card-product-category mb-3 text-center mx-auto chores"></i>
                   <% else %>
                     <i class="fas fa-question-circle card-product-category mb-3 text-center mx-auto"></i>
                   <% end %>
