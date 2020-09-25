@@ -12,7 +12,7 @@
   </div>
 
   <div class="text-left">
-    <p><%= job.user.first_name %> needs help with <%= job.category.name %> on <%= job.due_date.strftime("%A, %b %d") %>.</p>
+    <p><%= job.user.first_name %> needs help with <strong><%= job.category.name %></strong> on <%= job.due_date.strftime("%A, %b %d") %>.</p>
     <%= link_to job_path(job) do %>
       <button class="btn btn-outline-primary">Volunteer for this job</button>
     <% end %>

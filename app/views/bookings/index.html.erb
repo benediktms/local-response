@@ -209,11 +209,11 @@
                     </div>
                   </div>
                   <div class="row mt-3 mx-3">
-                    <p><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>. Click below to see details</p>
+                    <p class="text-secondary"><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>.</p>
                   </div>
                   <div class="row ml-3">
                     <%= link_to job_booking_path(booking.job.id, booking.id) do %>
-                      <button class="btn btn-outline-primary">Booking details</button>
+                      <button class="btn btn-outline-primary">Details</button>
                     <% end %>
                   </div>
                 </div>
@@ -260,11 +260,11 @@
                     </div>
                   </div>
                   <div class="row mt-3 mx-3">
-                    <p><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>. Click below to see details</p>
+                    <p class="text-secondary"><%= booking.job.user.first_name %> needs help with <%= booking.job.category.name %> on <%= booking.job.due_date.strftime("%A, %b %d") %>.</p>
                   </div>
                   <div class="row ml-3">
                     <%= link_to job_booking_path(booking.job.id, booking.id) do %>
-                      <button class="btn btn-outline-primary">Booking details</button>
+                      <button class="btn btn-outline-primary">Details</button>
                     <% end %>
                   </div>
                 </div>
@@ -308,7 +308,7 @@
                     </div>
                   </div>
                   <div class="row mt-3 mx-3">
-                    <p>Thank you for helping <%= booking.job.user.first_name %>!</p>
+                    <p class="text-secondary">Thank you for helping <%= booking.job.user.first_name %>!</p>
                   </div>
                   <div class="row ml-3">
                     <% if booking.invoices.attached? %>

@@ -52,7 +52,7 @@
                 </div>
               </div>
               <div class="row mt-3 mx-3">
-                <p><%= job.user.first_name %> needs help with <%= job.category.name %> on <%= job.due_date.strftime("%A, %b %d") %>. Click below to help out!</p>
+                <p class="text-secondary"><%= job.user.first_name %> needs help with <strong><%= job.category.name %></strong> on <%= job.due_date.strftime("%A, %b %d") %>. Click below to help out!</p>
               </div>
               <div class="row ml-3">
                 <%= link_to job_path(job) do %>
