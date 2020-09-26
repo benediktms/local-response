@@ -247,7 +247,7 @@
           <% @requested_bookings.each do |booking| %>
             <% if booking.confirmed && !booking.completed %>
               <div class="card-product p-3 shadow">
-                
+
                 <div class="mx-auto p-3 d-flex flex-column justify-content-between">
                   <div class="row my-3">
                     <% if booking.job.category.name == 'Groceries' %>
