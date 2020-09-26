@@ -120,7 +120,7 @@ job1 =
   Job.create!(
     title: 'Please, help me do the groceries',
     description:
-      "I've had a sever lung infection and was advised not to leave my house. I usually get my groceries delivered, but unfortunatley there weren't any solts until next week. Would really appreciate some help getting the essentials until then",
+      "I've had a sever lung infection and was advised not to leave my house. I usually get my groceries delivered, but unfortunatley there weren't any slots until next week. Would really appreciate some help getting the essentials until then",
     address: '125 Kingsway London WC2B 6NH',
     due_date: Time.now + 259_200,
     category: groceries,
@@ -159,7 +159,7 @@ puts "created #{job3}"
 job4 =
   Job.create!(
     {
-      title: 'Need medecine for heart condition',
+      title: 'Need medicine for heart condition',
       description:
         'I suffer from a heart condition and have been advised to self-isolate until the COVID-19 situation has calmed down a bit. However, I still need my medicine for my heart condition. Could someone run to the pharmacy and get it for me please?',
       address: '71 Aldwych London WC2B 4HN',
@@ -175,7 +175,7 @@ job5 =
     {
       title: 'Two senior citizens need assitance with some essentials',
       description:
-        'Me and my wife are both in our late 80s and have been advised to stay inside until the COVID-10 situation has been handled. My son and his wife are coming to stay with us next week, but until then we woudl need some help getting the essentials.',
+        'Me and my wife are both in our late 80s and have been advised to stay inside until the COVID-10 situation has been handled. My son and his wife are coming to stay with us next week, but until then we will need some help getting the essentials.',
       address: '2 Sheraton Street London W1F 8BH',
       due_date: Time.now + 259_200,
       category: groceries,
@@ -203,7 +203,7 @@ job7 =
     {
       title: "I've broken my arm and need some help fixing the sink",
       description:
-        "I fell the other day and broke my arm. My sink has developed a leak so I really need to fix it. Unfortunatly in my current situation I can't do that, but it's really quite simple, I can talk you through it! I'll also throw in a free meal!",
+        "I fell the other day and broke my arm. My sink has developed a leak so I really need to fix it. Unfortunately in my current situation I can't do that, but it's really quite simple, I can talk you through it! I'll also throw in a free meal!",
       address: '1 Long Lane, London SE1 4PG',
       due_date: Time.now + 259_200,
       category: chores,
@@ -217,7 +217,7 @@ job8 =
     {
       title: 'Need someone to collect my brother from the airport',
       description:
-        "My brother's coming to stay with me for a few weeks. Unfortunatley, he doesn't speak english very well and I'm worried that he's going to get lost. Please could someone get him from the airport for me?",
+        "My brother's coming to stay with me for a few weeks. Unfortunately, he doesn't speak english very well and I'm worried that he's going to get lost. Please could someone get him from the airport for me?",
       address: '35 Little Russell Street London WC1A 2HH',
       due_date: Time.now + 259_200,
       category: other,
@@ -231,7 +231,7 @@ job9 =
     {
       title: 'Need someone to take care of my dog while I am in hospital.',
       description:
-        "I've been diagnosed with COVID-19 and have been hospitalized for at least two weeks. My poor dog is all alone at home. Please coudl someone look after her while I'm in hospital?",
+        "I've been diagnosed with COVID-19 and have been hospitalized for at least two weeks. My poor dog is all alone at home. Please could someone look after her while I'm in hospital?",
       address: 'Ingestre Place London W1F 0JL',
       due_date: Time.now + 259_200,
       category: other,
@@ -245,7 +245,7 @@ job10 =
     {
       title: 'Pollen allergy must stay in',
       description:
-        "I've got a really bad pollen allergy to the point where my I can't breateh. Usualyl it's not a problem as I have medicine for it, but it's quite a rare condition and with the pandemic going on they have delayed production in favor of producting ventilators... I can't risk leaving the house, but I really need to get soem essntials in. Coudl someone run to the shop and pick up a few thigns for me, please?",
+        "I've got a really bad pollen allergy to the point where my I can't breathe. Usually it's not a problem as I have medicine for it, but it's quite a rare condition and with the pandemic going on they have delayed production in favor of producting ventilators... I can't risk leaving the house, but I really need to get soem essntials in. Could someone run to the shop and pick up a few thigns for me, please?",
       address: '123 Buckingham Palace Road London SW1W 9SH',
       due_date: Time.now + 259_200,
       category: groceries,
@@ -261,7 +261,7 @@ job11 =
     {
       title: 'Need some things collected from the office',
       description:
-        "I'm a bit ill at the moment but I really need to colelct some things from the office. Could someone help me please? Don't worry it's nothing heavy, and it'll fit into a backpack.",
+        "I'm a bit ill at the moment but I really need to collect some things from the office. Could someone help me please? Don't worry it's nothing heavy, and it'll fit into a backpack.",
       address: 'Queensbridge Rd, London E8 3ND',
       due_date: Time.now + 259_200,
       category: other,
@@ -273,9 +273,9 @@ puts "created #{job11}"
 job12 =
   Job.create!(
     {
-      title: 'Need to get some medicien from the pharmacy',
+      title: 'Need to get some medicine from the pharmacy',
       description:
-        "I've been told to self isolate by my son (he worries a lot). I promised him that I wouldn't leave the house, but I need to grab my perscription and he's very busy at work and I don't want to put him under more pressure. Please could someone pop down to the pharmacy and grab my meds for me?",
+        "I've been told to self-isolate by my son (he worries a lot). I promised him that I wouldn't leave the house, but I need to grab my perscription and he's very busy at work and I don't want to put him under more pressure. Please could someone pop down to the pharmacy and grab my meds for me?",
       address: '253 Kingsland Rd, London E2 8AN',
       due_date: Time.now + 259_200,
       category: medicine,
@@ -289,7 +289,7 @@ job13 =
     {
       title: 'Need someone to walk my dog',
       description:
-        "I've been told to shield during the COVID-19 pandemic,, but I really need someone to look after my dog. This is just a one off until I find a permanent solution. My old buy doesn't need long (30 mins along the canal should be enough). He's a kind soul and very easy to take care of. If anyone is available to help me, please get in touch.",
+        "I've been told to shield during the COVID-19 pandemic,, but I really need someone to look after my dog. This is just a one off until I find a permanent solution. My old boy doesn't need long (30 mins along the canal should be enough). He's a kind soul, and very easy to take care of. If anyone is available to help me, please get in touch.",
       address: '43 De Beauvoir Rd, De Beauvoir Town, London N1 5SQ',
       due_date: Time.now + 259_200,
       category: chores,
@@ -301,9 +301,9 @@ puts "created #{job13}"
 job14 =
   Job.create!(
     {
-      title: 'Please, I need some coffe!',
+      title: 'Please, I need some coffee!',
       description:
-        "Hi there! I'm a bit of a pickle! I've been told to self isolate, and have doen a big shop to prepare, but I've realized that I completly forgot to stock up on coffee! I'm a software developer and I won't be able to do my job wihtout coffee. Please can somone get me some coffee!!",
+        "Hi there! I'm a bit of a pickle! I've been told to self isolate, and have doen a big shop to prepare, but I've realized that I completly forgot to stock up on coffee! I'm a software developer and I won't be able to do my job without coffee. Please can somone get me some coffee!!",
       address: 'Northchurch Terrace, London N1 4DA',
       due_date: Time.now + 259_200,
       category: groceries,
