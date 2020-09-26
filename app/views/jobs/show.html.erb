@@ -13,7 +13,7 @@
         <% else %>
           <img
               class="avatar-large mr-3"
-              src="https://avatars.abstractapi.com/v1/?api_key=6fc0780e90b04e089c32be386f5e0e24&name=<%= @job.user.first_name.strip %>+<%= @job.user.last_name.strip %>"
+              src="https://avatars.abstractapi.com/v1/?api_key=<%= ENV['ABSTRACT_API_KEY'] %>&name=<%= @job.user.first_name.strip %>+<%= @job.user.last_name.strip %>"
           />
         <% end %>
         <div>Created <%= time_ago_in_words(@job.created_at) %> ago </br>by <%= @job.user.first_name %>.</div>
